@@ -1,0 +1,109 @@
+---
+import { ArrowRight, MessageCircle } from '@lucide/astro';
+---
+
+<section id="beranda" class="relative bg-primary min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+  <!-- Dynamic Image Background -->
+  <div class="absolute inset-0 z-0">
+    <img 
+      src="/images/hero-bg.png" 
+      alt="Makkah Background" 
+      class="w-full h-full object-cover object-center opacity-40 mix-blend-overlay"
+    />
+    <!-- Gradient overlay to ensure text readability -->
+    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-primary/80 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-900 via-primary/60 to-transparent"></div>
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10 w-full">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Text Content -->
+      <div class="lg:col-span-8 text-center lg:text-left mx-auto lg:mx-0 relative w-full">
+        <!-- Optional: subtle glow behind text for contrast -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[120%] bg-primary/20 blur-3xl rounded-full pointer-events-none -z-10"></div>
+
+        <div class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-gold-light text-xs sm:text-sm font-semibold mb-6 sm:mb-8 animate-fade-in-up shadow-xl">
+          <span class="flex h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-gold animate-pulse shadow-[0_0_8px_rgba(182,128,38,0.8)]"></span>
+          SPESIAL MILAD 31 TAHUN
+        </div>
+        
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] font-black text-white tracking-tight leading-[1.1] sm:leading-[1.05] mb-6 sm:mb-8 animate-fade-in-up drop-shadow-2xl" style="animation-delay: 100ms;">
+          Ibadah Nyaman,<br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold via-[#ffe2a8] to-gold drop-shadow-sm">Perjalanan Bermakna</span>
+        </h1>
+        
+        <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-neutral-200 mb-8 sm:mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed animate-fade-in-up font-light px-4 sm:px-0" style="animation-delay: 200ms;">
+          Umrah & Haji Khusus bersama <strong class="font-bold text-white">PaKeM TOURS</strong>. Lebih dari 31 tahun mendampingi 50.000+ jamaah dengan pelayanan Amanah dan Profesional.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-5 animate-fade-in-up px-4 sm:px-0" style="animation-delay: 300ms;">
+          <a href="#paket" class="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-gradient-to-r from-gold to-gold-light hover:from-gold-light hover:to-gold text-white font-bold px-6 py-3 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl transition-all duration-300 transform hover:-translate-y-1 shadow-[0_8px_20px_rgba(182,128,38,0.3)] hover:shadow-[0_12px_25px_rgba(182,128,38,0.5)] text-base sm:text-lg">
+            Lihat Paket Umrah <ArrowRight class="w-5 h-5" />
+          </a>
+          <a href="#konsultasi" class="w-full sm:w-auto inline-flex justify-center items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold px-6 py-3 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl transition-all duration-300 backdrop-blur-md shadow-xl hover:-translate-y-1 text-base sm:text-lg">
+            <MessageCircle class="w-5 h-5" /> Konsultasi via WhatsApp
+          </a>
+        </div>
+      </div>
+      
+      <!-- Highlight Card -->
+      <div class="hidden md:flex lg:col-span-4 justify-center lg:justify-end animate-fade-in-up mt-12 lg:mt-0" style="animation-delay: 500ms;">
+        <div class="bg-slate-900/60 backdrop-blur-md border border-white/20 rounded-3xl p-6 sm:p-8 w-full max-w-sm shadow-2xl relative overflow-hidden group">
+          <div class="absolute -inset-4 bg-gradient-to-tr from-gold/30 to-transparent blur-2xl group-hover:opacity-100 opacity-50 transition duration-700"></div>
+          
+          <div class="relative z-10">
+            <div class="text-gold font-bold text-sm tracking-widest uppercase mb-2">Penawaran Spesial</div>
+            <h3 class="text-white text-3xl font-bold mb-1">Paket Umrah Reguler</h3>
+            <div class="text-neutral-400 text-sm mb-6">9 Hari Perjalanan</div>
+            
+            <div class="text-white text-sm mb-2">Mulai dari</div>
+            <div class="text-gold text-5xl font-black mb-6">30,8 <span class="text-xl">Juta</span></div>
+            
+            <div class="space-y-3 mb-8">
+              <div class="flex items-center gap-3 text-neutral-200">
+                <div class="w-6 h-6 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-xs">✓</div>
+                Penerbangan Direct (Saudi Airlines)
+              </div>
+              <div class="flex items-center gap-3 text-neutral-200">
+                <div class="w-6 h-6 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-xs">✓</div>
+                Hotel Bintang 4 & 5 (Dekat Masjid)
+              </div>
+              <div class="flex items-center gap-3 text-neutral-200">
+                <div class="w-6 h-6 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-xs">✓</div>
+                Aplikasi Manasik Digital
+              </div>
+            </div>
+            
+            <a href="#paket" class="block w-full text-center bg-white text-primary hover:bg-neutral-100 font-bold py-3 rounded-lg transition-colors">
+              Pesan Sekarang
+            </a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <!-- Bottom separator (Smooth Elegant Curve) -->
+  <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20 drop-shadow-sm">
+    <svg class="relative block w-full h-[40px] md:h-[70px] lg:h-[90px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path fill="#ffffff" d="M0,128L120,149.3C240,171,480,213,720,213.3C960,213,1200,171,1320,149.3L1440,128L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
+    </svg>
+  </div>
+</section>
+
+<style>
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
