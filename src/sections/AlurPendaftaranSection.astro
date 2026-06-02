@@ -1,0 +1,93 @@
+---
+import { MessageCircle, Search, Wallet, BookOpen, PlaneTakeoff } from '@lucide/astro';
+
+const steps = [
+  {
+    num: '01',
+    title: 'Konsultasi Gratis',
+    desc: 'Hubungi tim kami via WhatsApp untuk bertanya seputar jadwal dan paket.',
+    icon: MessageCircle
+  },
+  {
+    num: '02',
+    title: 'Pilih Paket',
+    desc: 'Tentukan paket umrah yang sesuai dengan jadwal dan anggaran keluarga Anda.',
+    icon: Search
+  },
+  {
+    num: '03',
+    title: 'Booking Seat',
+    desc: 'Lakukan pembayaran DP dengan aman untuk mengamankan kursi Anda.',
+    icon: Wallet
+  },
+  {
+    num: '04',
+    title: 'Manasik Digital',
+    desc: 'Ikuti bimbingan manasik secara langsung dan pelajari materinya via aplikasi.',
+    icon: BookOpen
+  },
+  {
+    num: '05',
+    title: 'Berangkat Ibadah',
+    desc: 'Fokus beribadah dengan tenang. Semua urusan teknis biar kami yang urus.',
+    icon: PlaneTakeoff
+  }
+];
+---
+
+<section id="alur" class="py-24 bg-white border-t border-neutral-100">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="text-center max-w-3xl mx-auto mb-16 animate-fade-in-up">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold/10 text-gold font-bold text-sm mb-4">
+        Langkah Mudah
+      </div>
+      <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
+        Cara Mendaftar <span class="text-primary">Umrah</span>
+      </h2>
+      <p class="text-lg text-slate-600">
+        Proses pendaftaran yang transparan, aman, dan dibantu sepenuhnya oleh tim profesional kami.
+      </p>
+    </div>
+
+    <!-- Stepper layout -->
+    <div class="relative">
+      <!-- Connecting line for desktop -->
+      <div class="hidden lg:block absolute top-10 left-0 w-full h-1 bg-neutral-100 z-0"></div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-4 relative z-10">
+        {steps.map((step, i) => (
+          <div class="flex flex-col items-center text-center group animate-fade-in-up" style={`animation-delay: ${i * 100}ms;`}>
+            
+            <div class="relative w-16 h-16 sm:w-20 sm:h-20 mb-4 sm:mb-6 flex items-center justify-center">
+              <!-- Glow effect on hover -->
+              <div class="absolute inset-0 bg-gold/20 rounded-full blur-xl scale-0 group-hover:scale-150 transition-transform duration-500"></div>
+              
+              <div class="w-16 h-16 sm:w-20 sm:h-20 bg-white border-4 border-neutral-100 rounded-full flex items-center justify-center relative z-10 group-hover:border-gold transition-colors duration-300 shadow-sm group-hover:shadow-lg">
+                <step.icon class="w-6 h-6 sm:w-8 sm:h-8 text-primary group-hover:text-gold transition-colors" />
+                
+                <!-- Step Number Badge -->
+                <div class="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-6 h-6 sm:w-8 sm:h-8 bg-slate-900 text-white font-black text-[10px] sm:text-xs rounded-full flex items-center justify-center border-2 border-white shadow-md">
+                  {step.num}
+                </div>
+              </div>
+            </div>
+            
+            <h3 class="text-base sm:text-xl font-bold text-slate-900 mb-2 leading-tight">{step.title}</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-[200px]">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
