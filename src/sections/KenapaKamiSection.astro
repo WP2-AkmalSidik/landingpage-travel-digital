@@ -1,0 +1,73 @@
+---
+import { ShieldCheck, UserCheck, Hotel, Smartphone } from '@lucide/astro';
+
+const reasons = [
+  {
+    title: 'Amanah & Terpercaya',
+    desc: 'Lebih dari 31 tahun melayani jamaah dengan izin resmi PPIU Kemenag RI.',
+    icon: ShieldCheck,
+    color: 'text-blue-600',
+    bg: 'bg-blue-50'
+  },
+  {
+    title: 'Pembimbing Profesional',
+    desc: 'Didampingi Muthawwif berpengalaman yang membimbing sesuai sunnah.',
+    icon: UserCheck,
+    color: 'text-green-600',
+    bg: 'bg-green-50'
+  },
+  {
+    title: 'Hotel Pilihan',
+    desc: 'Akomodasi berbintang yang berlokasi strategis di dekat pelataran Masjid.',
+    icon: Hotel,
+    color: 'text-gold',
+    bg: 'bg-orange-50'
+  },
+  {
+    title: 'Aplikasi Jamaah',
+    desc: 'Kemudahan akses jadwal, dokumen, dan manasik digital dalam satu genggaman.',
+    icon: Smartphone,
+    color: 'text-purple-600',
+    bg: 'bg-purple-50'
+  }
+];
+---
+
+<section id="kenapa-kami" class="py-24 bg-white relative">
+  <div class="container mx-auto px-4">
+    <div class="text-center max-w-3xl mx-auto mb-16 animate-fade-in-up">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 text-primary font-bold text-sm mb-4">
+        Nilai Kami
+      </div>
+      <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
+        Kenapa Memilih <span class="text-gold">PaKeM Tours?</span>
+      </h2>
+      <p class="text-lg text-slate-600">
+        Kami berkomitmen memberikan pelayanan terbaik, amanah, dan profesional untuk setiap tamu Allah.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 max-w-6xl mx-auto">
+      {reasons.map((item, i) => (
+        <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 border border-neutral-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 sm:hover:-translate-y-2 transition-all duration-300 text-center group animate-fade-in-up flex flex-col items-center justify-center" style={`animation-delay: ${i * 100}ms;`}>
+          <div class={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-6 ${item.bg} ${item.color} group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
+            <item.icon class="w-6 h-6 sm:w-8 sm:h-8" />
+          </div>
+          <h3 class="text-base sm:text-xl font-bold text-slate-900 mb-2 sm:mb-3 leading-tight">{item.title}</h3>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed hidden sm:block">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
