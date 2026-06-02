@@ -1,0 +1,170 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import { Globe, MapPin, Phone, Mail, Clock } from '@lucide/astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { 
+  title = "PaKeM Tours - Ibadah Nyaman, Perjalanan Bermakna", 
+  description = "Biro perjalanan Haji Khusus dan Umrah resmi terpercaya. Lebih dari 31 tahun berkhidmat mendampingi jamaah ke tanah suci dengan pelayanan amanah dan profesional." 
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="id">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={Astro.url} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+	</head>
+	<body class="antialiased min-h-screen flex flex-col pt-0">
+		<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:p-4 focus:bg-primary focus:text-white focus:z-50">
+			Skip to main content
+		</a>
+		
+		<Navbar />
+		
+		<main id="main-content" class="flex-grow">
+			<slot />
+		</main>
+		
+		<footer class="bg-[#0a0f18] text-neutral-400 pt-24 pb-8 border-t border-white/10 relative overflow-hidden">
+			<!-- Subtle background decoration -->
+			<div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[100px] pointer-events-none"></div>
+			<div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-primary-light/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+			<div class="container mx-auto px-4 relative z-10">
+				<!-- Top Footer: 4-Column Grid -->
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16 pb-16">
+					<!-- Col 1: Brand & About -->
+					<div class="flex flex-col gap-6">
+						<a href="#" class="flex items-center gap-2 text-white group w-fit">
+							<Globe class="w-8 h-8 text-gold group-hover:rotate-180 transition-transform duration-700" />
+							<span class="text-2xl font-bold tracking-tight">PaKeM<span class="font-light">Tours</span></span>
+						</a>
+						<p class="text-sm leading-relaxed text-neutral-400">
+							Menjadi teman perjalanan spiritual Anda menuju Baitullah. Lebih dari 3 dekade, kami berkomitmen memberikan pelayanan Umrah & Haji Khusus yang aman, nyaman, dan sesuai sunnah.
+						</p>
+						<div class="flex flex-col gap-3 text-xs bg-white/5 border border-white/10 rounded-2xl p-5 mt-2 hover:bg-white/10 transition-colors duration-300">
+							<div class="text-gold font-semibold flex items-center gap-2 uppercase tracking-wider text-[10px]">
+								<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+								Legalitas Kemenag RI
+							</div>
+							<div class="flex justify-between items-center border-b border-white/5 pb-2">
+								<span>PPIU (Umrah)</span> <span class="text-white font-medium">No. 812 / 2019</span>
+							</div>
+							<div class="flex justify-between items-center">
+								<span>PIHK (Haji)</span> <span class="text-white font-medium">No. 234 / 2021</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Col 2: Paket Umrah -->
+					<div class="flex flex-col gap-6">
+						<h3 class="text-white font-semibold text-lg flex items-center gap-2.5">
+							<span class="w-1.5 h-1.5 rounded-full bg-gold"></span> Paket Pilihan
+						</h3>
+						<ul class="flex flex-col gap-3.5 text-sm text-neutral-400">
+							<li><a href="#paket" class="hover:text-gold hover:translate-x-1 inline-block transition-all duration-300">Umrah Reguler 9 Hari</a></li>
+							<li><a href="#paket" class="hover:text-gold hover:translate-x-1 inline-block transition-all duration-300">Umrah Spesial Ramadhan</a></li>
+							<li><a href="#paket" class="hover:text-gold hover:translate-x-1 inline-block transition-all duration-300">Umrah Plus Turki / Dubai</a></li>
+							<li><a href="#paket" class="hover:text-gold hover:translate-x-1 inline-block transition-all duration-300">Haji Khusus (Furoda)</a></li>
+							<li><a href="#paket" class="hover:text-gold hover:translate-x-1 inline-block transition-all duration-300">Tabungan Umrah</a></li>
+						</ul>
+					</div>
+
+					<!-- Col 3: Navigasi -->
+					<div class="flex flex-col gap-6">
+						<h3 class="text-white font-semibold text-lg flex items-center gap-2.5">
+							<span class="w-1.5 h-1.5 rounded-full bg-gold"></span> Tautan Cepat
+						</h3>
+						<ul class="flex flex-col gap-3.5 text-sm text-neutral-400">
+							<li><a href="#beranda" class="hover:text-gold hover:translate-x-1 inline-block transition-all duration-300">Beranda</a></li>
+							<li><a href="#kenapa-kami" class="hover:text-gold hover:translate-x-1 inline-block transition-all duration-300">Tentang Kami</a></li>
+							<li><a href="#fasilitas" class="hover:text-gold hover:translate-x-1 inline-block transition-all duration-300">Fasilitas Digital</a></li>
+							<li><a href="#alur" class="hover:text-gold hover:translate-x-1 inline-block transition-all duration-300">Alur Pendaftaran</a></li>
+							<li><a href="#testimoni" class="hover:text-gold hover:translate-x-1 inline-block transition-all duration-300">Testimoni Jamaah</a></li>
+						</ul>
+					</div>
+
+					<!-- Col 4: Kontak & Alamat -->
+					<div class="flex flex-col gap-6">
+						<h3 class="text-white font-semibold text-lg flex items-center gap-2.5">
+							<span class="w-1.5 h-1.5 rounded-full bg-gold"></span> Hubungi Kami
+						</h3>
+						<ul class="flex flex-col gap-4 text-sm text-neutral-400">
+							<li class="flex gap-3 group cursor-pointer">
+								<MapPin class="w-5 h-5 text-gold shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+								<span class="group-hover:text-white transition-colors">Rukan Bisnis Park Kirana Cawang, Jl. DI Pandjaitan Kav. 48 Blok A-5, Jakarta Timur</span>
+							</li>
+							<li class="flex gap-3 items-center group">
+								<Phone class="w-5 h-5 text-gold shrink-0 group-hover:scale-110 transition-transform" />
+								<a href="tel:02129067433" class="group-hover:text-white transition-colors">021-29067433</a>
+							</li>
+							<li class="flex gap-3 items-center group">
+								<Mail class="w-5 h-5 text-gold shrink-0 group-hover:scale-110 transition-transform" />
+								<a href="mailto:pakemtours.ops@gmail.com" class="group-hover:text-white transition-colors">pakemtours.ops@gmail.com</a>
+							</li>
+							<li class="flex gap-3 group">
+								<Clock class="w-5 h-5 text-gold shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+								<span class="text-xs group-hover:text-white transition-colors">
+									Senin - Jumat: 08:30 - 17:00 <br />
+									Sabtu: 08:30 - 13:00
+								</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Middle Footer: Credential Tags & Partners -->
+				<div class="border-y border-white/5 py-6 mb-8 flex flex-wrap items-center justify-center gap-3 text-[10px] sm:text-xs font-semibold tracking-widest text-neutral-400 uppercase">
+					<span class="px-4 py-2 border border-white/10 rounded-full bg-white/5 hover:bg-gold/10 hover:text-gold hover:border-gold/30 transition-all cursor-default">PPIU Resmi</span>
+					<span class="px-4 py-2 border border-white/10 rounded-full bg-white/5 hover:bg-gold/10 hover:text-gold hover:border-gold/30 transition-all cursor-default">Terakreditasi Kemenag</span>
+					<span class="px-4 py-2 border border-white/10 rounded-full bg-white/5 hover:bg-gold/10 hover:text-gold hover:border-gold/30 transition-all cursor-default">Anggota HIMPUH</span>
+				</div>
+
+				<!-- Bottom Footer: Copyright & Socials -->
+				<div class="flex flex-col-reverse md:flex-row items-center justify-between gap-6 text-xs text-neutral-500">
+					<p>&copy; {new Date().getFullYear()} PT Pandi Kencana Murni (PaKeM Tours). All rights reserved.</p>
+					
+					<div class="flex items-center gap-3">
+						<a href="#" aria-label="Facebook" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-gold hover:border-gold hover:text-slate-900 transition-all duration-300 text-neutral-400 hover:-translate-y-1">
+							<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+								<path d="M9 8H7v3h2v9h3v-9h3.6l.4-3H12V6c0-.9.6-1 1-1h2V2h-3c-3 0-5 1.8-5 5v1z"/>
+							</svg>
+						</a>
+						<a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-gold hover:border-gold hover:text-slate-900 transition-all duration-300 text-neutral-400 hover:-translate-y-1">
+							<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+								<path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+								<line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+							</svg>
+						</a>
+						<a href="#" aria-label="YouTube" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-gold hover:border-gold hover:text-slate-900 transition-all duration-300 text-neutral-400 hover:-translate-y-1">
+							<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+								<path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.508 9.388.508 9.388.508s7.518 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+							</svg>
+						</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
