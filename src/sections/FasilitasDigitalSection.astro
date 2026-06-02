@@ -1,0 +1,79 @@
+---
+import { Smartphone, BookOpen, Clock, DownloadCloud } from '@lucide/astro';
+---
+
+<section id="fasilitas" class="py-24 bg-slate-900 text-white relative overflow-hidden">
+  <!-- Glowing background elements -->
+  <div class="absolute top-1/4 -left-64 w-[500px] h-[500px] bg-primary/40 rounded-full blur-[100px] pointer-events-none"></div>
+  <div class="absolute bottom-1/4 -right-64 w-[500px] h-[500px] bg-gold/20 rounded-full blur-[100px] pointer-events-none"></div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+      
+      <div class="order-2 lg:order-1 relative group animate-fade-in-up">
+        <div class="absolute -inset-4 bg-gradient-to-tr from-blue-500/20 to-gold/20 rounded-[3rem] blur-xl group-hover:opacity-100 opacity-60 transition duration-500"></div>
+        <img 
+          src="/images/mobile-mockup.png" 
+          alt="Aplikasi Manasik Digital PaKeM Tours" 
+          class="relative w-full max-w-md mx-auto h-auto rounded-[2.5rem] shadow-2xl border-4 border-slate-800 transform group-hover:-translate-y-2 transition duration-500" 
+        />
+        
+        <div class="absolute top-1/4 right-2 sm:-right-8 lg:-right-12 bg-slate-900/80 sm:bg-white/10 backdrop-blur-xl border border-white/20 p-3 sm:p-4 rounded-2xl shadow-xl flex items-center gap-3 sm:gap-4 animate-bounce" style="animation-duration: 4s;">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gold text-white rounded-full flex items-center justify-center shrink-0">
+            <BookOpen class="w-5 h-5 sm:w-6 sm:h-6" />
+          </div>
+          <div>
+            <div class="font-bold text-white text-sm sm:text-base leading-tight">Manasik Digital</div>
+            <div class="text-[10px] sm:text-xs text-neutral-300">Akses Kapan Saja</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="order-1 lg:order-2 animate-fade-in-up" style="animation-delay: 200ms;">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-sm font-semibold mb-6">
+          <Smartphone class="w-4 h-4" /> Fasilitas Eksklusif Jamaah
+        </div>
+        
+        <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+          Semua Informasi Perjalanan Dalam <span class="text-gold">Satu Genggaman</span>
+        </h2>
+        
+        <p class="text-neutral-300 text-lg mb-8 leading-relaxed">
+          Nikmati kemudahan mengakses jadwal, dokumen penting, hingga panduan manasik interaktif langsung dari smartphone Anda. Ibadah jadi lebih siap dan tenang.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+            <BookOpen class="w-8 h-8 text-gold mb-4" />
+            <h3 class="text-lg font-bold mb-2">Video Manasik</h3>
+            <p class="text-sm text-neutral-400">Panduan ibadah step-by-step yang mudah dipahami.</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+            <Clock class="w-8 h-8 text-gold mb-4" />
+            <h3 class="text-lg font-bold mb-2">Jadwal Real-time</h3>
+            <p class="text-sm text-neutral-400">Pantau jadwal keberangkatan dan status perjalanan.</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm sm:col-span-2 flex items-center gap-4">
+            <DownloadCloud class="w-8 h-8 text-gold shrink-0" />
+            <div>
+              <h3 class="text-lg font-bold mb-1">Akses Dokumen Aman</h3>
+              <p class="text-sm text-neutral-400">Unduh e-tiket dan visa langsung dari aplikasi tanpa takut hilang.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<style>
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
