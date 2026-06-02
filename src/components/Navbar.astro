@@ -1,0 +1,189 @@
+---
+import { Globe, Menu, X } from '@lucide/astro';
+
+const navLinks = [
+  { name: 'Beranda', href: '#beranda' },
+  { name: 'Kenapa Kami', href: '#kenapa-kami' },
+  { name: 'Paket Umrah', href: '#paket' },
+  { name: 'Fasilitas', href: '#fasilitas' },
+  { name: 'Alur Daftar', href: '#alur' },
+  { name: 'Testimoni', href: '#testimoni' },
+  { name: 'FAQ', href: '#faq' },
+];
+---
+
+<header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-transparent">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2 text-white group">
+        <Globe class="w-8 h-8 text-gold group-hover:animate-spin" style="animation-duration: 3s;" />
+        <span class="text-2xl font-bold tracking-tight">PaKeM<span class="font-light">Tours</span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-8">
+        <ul class="flex items-center gap-6">
+          {navLinks.map(link => (
+            <li>
+              <a 
+                href={link.href} 
+                class="desktop-link text-sm font-medium text-neutral-200 hover:text-gold transition-colors relative group py-2"
+              >
+                {link.name}
+                <span class="indicator absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a href="#konsultasi" class="bg-gradient-to-r from-gold to-gold-light hover:from-gold-light hover:to-gold text-white text-sm font-bold px-6 py-2.5 rounded-full transition-transform hover:-translate-y-0.5 shadow-lg hover:shadow-gold/30">
+          Konsultasi Gratis
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="lg:hidden text-white p-2 relative w-10 h-10 flex items-center justify-center focus:outline-none cursor-pointer" aria-label="Toggle Menu">
+        <Menu class="w-6 h-6 absolute transition-all duration-300 transform scale-100 rotate-0 opacity-100 text-white" id="menu-icon" />
+        <X class="w-6 h-6 absolute transition-all duration-300 transform scale-0 rotate-90 opacity-0 text-white" id="close-icon" />
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Mobile Nav Overlay -->
+  <div id="mobile-menu" class="absolute top-20 left-0 w-full bg-slate-900/95 backdrop-blur-xl border-b border-white/10 shadow-2xl transition-all duration-300 ease-in-out opacity-0 invisible -translate-y-4 pointer-events-none z-40">
+    <ul class="flex flex-col px-4 py-6 gap-4">
+      {navLinks.map((link, index) => (
+        <li style={`transition-delay: ${index * 50}ms;`} class="transition-all duration-300 ease-out transform translate-y-4 opacity-0 mobile-link-item">
+          <a href={link.href} class="mobile-link block text-lg font-medium text-white hover:text-gold transition-colors py-2 border-b border-white/5">
+            {link.name}
+          </a>
+        </li>
+      ))}
+      <li style={`transition-delay: ${navLinks.length * 50}ms;`} class="transition-all duration-300 ease-out transform translate-y-4 opacity-0 mobile-link-item pt-4">
+        <a href="#konsultasi" class="mobile-link block text-center bg-gradient-to-r from-gold to-gold-light text-white font-bold px-6 py-3 rounded-xl shadow-lg">
+          Konsultasi Gratis
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  const menu = document.getElementById('mobile-menu');
+  
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      navbar.classList.add('bg-primary/95', 'backdrop-blur-md', 'shadow-lg', 'border-white/10');
+      navbar.classList.remove('border-transparent');
+    } else {
+      const isMenuOpen = !menu.classList.contains('opacity-0');
+      if (!isMenuOpen) {
+        navbar.classList.remove('bg-primary/95', 'backdrop-blur-md', 'shadow-lg', 'border-white/10');
+        navbar.classList.add('border-transparent');
+      }
+    }
+  });
+
+  // Mobile menu toggle
+  const btn = document.getElementById('mobile-menu-btn');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+  const mobileLinkItems = document.querySelectorAll('.mobile-link-item');
+
+  function toggleMenu() {
+    const isClosed = menu.classList.contains('opacity-0');
+    
+    if (isClosed) {
+      // Open
+      menu.classList.remove('opacity-0', 'invisible', '-translate-y-4', 'pointer-events-none');
+      menu.classList.add('opacity-100', 'visible', 'translate-y-0', 'pointer-events-auto');
+      
+      // Icon toggle
+      menuIcon.classList.remove('scale-100', 'rotate-0', 'opacity-100');
+      menuIcon.classList.add('scale-0', '-rotate-90', 'opacity-0');
+      
+      closeIcon.classList.remove('scale-0', 'rotate-90', 'opacity-0');
+      closeIcon.classList.add('scale-100', 'rotate-0', 'opacity-100');
+      
+      // Items staggered transition
+      mobileLinkItems.forEach(item => {
+        item.classList.remove('translate-y-4', 'opacity-0');
+        item.classList.add('translate-y-0', 'opacity-100');
+      });
+      
+      navbar.classList.add('bg-primary/95', 'backdrop-blur-md');
+    } else {
+      // Close
+      menu.classList.add('opacity-0', 'invisible', '-translate-y-4', 'pointer-events-none');
+      menu.classList.remove('opacity-100', 'visible', 'translate-y-0', 'pointer-events-auto');
+      
+      // Icon toggle
+      menuIcon.classList.remove('scale-0', '-rotate-90', 'opacity-0');
+      menuIcon.classList.add('scale-100', 'rotate-0', 'opacity-100');
+      
+      closeIcon.classList.remove('scale-100', 'rotate-0', 'opacity-100');
+      closeIcon.classList.add('scale-0', 'rotate-90', 'opacity-0');
+      
+      // Items staggered transition reset
+      mobileLinkItems.forEach(item => {
+        item.classList.add('translate-y-4', 'opacity-0');
+        item.classList.remove('translate-y-0', 'opacity-100');
+      });
+      
+      if (window.scrollY <= 20) {
+        navbar.classList.remove('bg-primary/95', 'backdrop-blur-md');
+      }
+    }
+  }
+
+  btn.addEventListener('click', toggleMenu);
+  
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const isClosed = menu.classList.contains('opacity-0');
+      if(!isClosed) {
+        toggleMenu();
+      }
+    });
+  });
+
+  // Active section highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const desktopLinks = document.querySelectorAll('.desktop-link');
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -70% 0px', // Adjust triggering area
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        
+        desktopLinks.forEach(link => {
+          const indicator = link.querySelector('.indicator');
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('text-gold', 'font-bold');
+            link.classList.remove('text-neutral-200', 'font-medium');
+            if(indicator) indicator.classList.replace('w-0', 'w-full');
+          } else {
+            link.classList.remove('text-gold', 'font-bold');
+            link.classList.add('text-neutral-200', 'font-medium');
+            if(indicator) indicator.classList.replace('w-full', 'w-0');
+          }
+        });
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+</script>
