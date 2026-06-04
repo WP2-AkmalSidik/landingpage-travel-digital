@@ -2,13 +2,13 @@
 import { Globe, Menu, X } from '@lucide/astro';
 
 const navLinks = [
-  { name: 'Beranda', href: '#beranda' },
-  { name: 'Kenapa Kami', href: '#kenapa-kami' },
-  { name: 'Paket Umrah', href: '#paket' },
-  { name: 'Fasilitas', href: '#fasilitas' },
-  { name: 'Alur Daftar', href: '#alur' },
-  { name: 'Testimoni', href: '#testimoni' },
-  { name: 'FAQ', href: '#faq' },
+  { name: 'Beranda', href: '/#beranda' },
+  { name: 'Kenapa Kami', href: '/#kenapa-kami' },
+  { name: 'Paket', href: '/paket' },
+  { name: 'Fasilitas', href: '/#fasilitas' },
+  { name: 'Alur Daftar', href: '/#alur' },
+  { name: 'Testimoni', href: '/#testimoni' },
+  { name: 'FAQ', href: '/#faq' },
 ];
 ---
 
@@ -17,9 +17,8 @@ const navLinks = [
     <div class="flex items-center justify-between h-20">
       
       <!-- Logo -->
-      <a href="#" class="flex items-center gap-2 text-white group">
-        <Globe class="w-8 h-8 text-gold group-hover:animate-spin" style="animation-duration: 3s;" />
-        <span class="text-2xl font-bold tracking-tight">PaKeM<span class="font-light">Tours</span></span>
+      <a href="/" class="flex items-center gap-2 text-slate-900 group bg-white/95 backdrop-blur-sm px-3 py-1 sm:px-4 sm:py-1.5 rounded-full shadow-lg hover:shadow-xl transition-all border border-white/20">
+        <img src="/images/logo-pakem.png" alt="PaKeM Tours Logo" class="h-9 sm:h-10 w-auto" />
       </a>
 
       <!-- Desktop Nav -->
@@ -37,7 +36,7 @@ const navLinks = [
             </li>
           ))}
         </ul>
-        <a href="#konsultasi" class="bg-gradient-to-r from-gold to-gold-light hover:from-gold-light hover:to-gold text-white text-sm font-bold px-6 py-2.5 rounded-full transition-transform hover:-translate-y-0.5 shadow-lg hover:shadow-gold/30">
+        <a href="/#konsultasi" class="bg-gradient-to-r from-gold to-gold-light hover:from-gold-light hover:to-gold text-white text-sm font-bold px-6 py-2.5 rounded-full transition-transform hover:-translate-y-0.5 shadow-lg hover:shadow-gold/30">
           Konsultasi Gratis
         </a>
       </nav>
@@ -62,7 +61,7 @@ const navLinks = [
         </li>
       ))}
       <li style={`transition-delay: ${navLinks.length * 50}ms;`} class="transition-all duration-300 ease-out transform translate-y-4 opacity-0 mobile-link-item pt-4">
-        <a href="#konsultasi" class="mobile-link block text-center bg-gradient-to-r from-gold to-gold-light text-white font-bold px-6 py-3 rounded-xl shadow-lg">
+        <a href="/#konsultasi" class="mobile-link block text-center bg-gradient-to-r from-gold to-gold-light text-white font-bold px-6 py-3 rounded-xl shadow-lg">
           Konsultasi Gratis
         </a>
       </li>
@@ -156,6 +155,19 @@ const navLinks = [
   const sections = document.querySelectorAll('section[id]');
   const desktopLinks = document.querySelectorAll('.desktop-link');
 
+  // Set active link on load based on pathname
+  const currentPath = window.location.pathname;
+  desktopLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    const indicator = link.querySelector('.indicator');
+    
+    if (href === currentPath || (currentPath.replace(/\/$/, '') === '/paket' && href === '/paket')) {
+      link.classList.add('text-gold', 'font-bold');
+      link.classList.remove('text-neutral-200', 'font-medium');
+      if(indicator) indicator.classList.replace('w-0', 'w-full');
+    }
+  });
+
   const observerOptions = {
     root: null,
     rootMargin: '-20% 0px -70% 0px', // Adjust triggering area
@@ -169,7 +181,14 @@ const navLinks = [
         
         desktopLinks.forEach(link => {
           const indicator = link.querySelector('.indicator');
-          if (link.getAttribute('href') === `#${id}`) {
+          const href = link.getAttribute('href');
+          
+          // Don't override if we are on a specific page like /paket
+          if (currentPath.includes('/paket') && href === '/paket') {
+             return;
+          }
+
+          if (href === `#${id}` || href === `/#${id}` || (id === 'paket' && href === '/paket')) {
             link.classList.add('text-gold', 'font-bold');
             link.classList.remove('text-neutral-200', 'font-medium');
             if(indicator) indicator.classList.replace('w-0', 'w-full');

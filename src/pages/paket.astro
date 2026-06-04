@@ -1,0 +1,289 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import AlurPendaftaranSection from '../sections/AlurPendaftaranSection.astro';
+import { Plane, Building, Calendar, ArrowRight, MessageCircle, X } from '@lucide/astro';
+import PackageCard from '../components/PackageCard.astro';
+
+const allPackages = [
+  {
+    badge: 'REGULER',
+    title: 'Umrah Reguler 9 Hari',
+    price: '30.800.000',
+    airline: 'Saudi Airlines',
+    hotel: 'Bintang 4',
+    date: '12 Juni 2024',
+    seats: 12,
+    bg: 'bg-gradient-to-br from-blue-900 to-primary',
+    type: 'Umrah'
+  },
+  {
+    badge: 'PLUS TURKI',
+    title: 'Umrah Plus Turki 12 Hari',
+    price: '39.800.000',
+    airline: 'Turkish Airlines',
+    hotel: 'Bintang 5',
+    date: '20 Juli 2024',
+    seats: 7,
+    bg: 'bg-gradient-to-br from-orange-600 to-gold',
+    type: 'Umrah'
+  },
+  {
+    badge: 'RAMADHAN',
+    title: 'Umrah Ramadhan 12 Hari',
+    price: '42.500.000',
+    airline: 'Saudi Airlines',
+    hotel: 'Bintang 5',
+    date: '5 Maret 2024',
+    seats: 10,
+    bg: 'bg-gradient-to-br from-purple-900 to-slate-900',
+    type: 'Umrah'
+  },
+  {
+    badge: 'SYAWAL',
+    title: 'Umrah Syawal 9 Hari',
+    price: '32.500.000',
+    airline: 'Garuda Indonesia',
+    hotel: 'Bintang 4',
+    date: '15 April 2024',
+    seats: 15,
+    bg: 'bg-gradient-to-br from-cyan-900 to-blue-800',
+    type: 'Umrah'
+  },
+  {
+    badge: 'HAJI KHUSUS',
+    title: 'Haji Khusus Furoda 24 Hari',
+    price: '135.000.000',
+    airline: 'Garuda Indonesia',
+    hotel: 'Bintang 5',
+    date: '10 Mei 2024',
+    seats: 5,
+    bg: 'bg-gradient-to-br from-emerald-900 to-slate-900',
+    type: 'Haji'
+  },
+  {
+    badge: 'HAJI PLUS',
+    title: 'Haji Plus Kuota Kemenag',
+    price: '115.000.000',
+    airline: 'Saudi Airlines',
+    hotel: 'Bintang 5',
+    date: 'Menunggu Kuota',
+    seats: 20,
+    bg: 'bg-gradient-to-br from-teal-800 to-emerald-700',
+    type: 'Haji'
+  }
+];
+---
+
+<MainLayout 
+  title="Semua Paket Umrah & Haji | PaKeM Tours"
+  description="Daftar lengkap pilihan paket Umrah Reguler, Plus, Ramadhan, serta Haji Khusus dari PaKeM Tours."
+>
+  <!-- Page Header -->
+  <section class="pt-36 pb-24 relative overflow-hidden bg-[#0B132B]">
+    <div class="absolute inset-0 opacity-40 mix-blend-overlay bg-[url('/images/hero-bg.png')] bg-cover bg-center"></div>
+    <div class="absolute top-0 right-0 w-full h-full bg-gradient-to-b from-transparent to-[#0B132B]"></div>
+    
+    <!-- Glow effects -->
+    <div class="absolute top-1/4 -left-32 w-96 h-96 bg-gold/20 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-primary/30 rounded-full blur-[120px] pointer-events-none"></div>
+    
+    <div class="container mx-auto px-4 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/5 text-gold font-bold text-sm mb-8 backdrop-blur-md border border-white/10 shadow-[0_0_20px_rgba(212,175,55,0.15)] animate-fade-in-up">
+        Pilihan Lengkap Perjalanan Suci
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in-up tracking-tight" style="animation-delay: 100ms;">
+        Paket <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold to-yellow-200">Umrah & Haji</span>
+      </h1>
+      <p class="text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto animate-fade-in-up leading-relaxed" style="animation-delay: 200ms;">
+        Temukan paket ibadah yang paling sesuai dengan kebutuhan dan jadwal Anda. Kami mendampingi perjalanan spiritual Anda dengan pelayanan yang amanah dan nyaman.
+      </p>
+    </div>
+  </section>
+
+  <!-- Package List Section -->
+  <section class="py-12 sm:py-20 bg-neutral-50">
+    <div class="container mx-auto px-4">
+      
+      <!-- Tabs Navigation -->
+      <div class="flex justify-center mb-8 sm:mb-12">
+        <div class="inline-flex bg-white rounded-full p-1.5 shadow-sm border border-neutral-200 overflow-x-auto hide-scrollbar max-w-full">
+          <button class="tab-btn px-5 sm:px-8 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all text-white bg-slate-900 whitespace-nowrap" data-target="all">
+            Semua Paket
+          </button>
+          <button class="tab-btn px-5 sm:px-8 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all text-slate-500 hover:text-slate-900 whitespace-nowrap" data-target="Umrah">
+            Umrah
+          </button>
+          <button class="tab-btn px-5 sm:px-8 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all text-slate-500 hover:text-slate-900 whitespace-nowrap" data-target="Haji">
+            Haji Khusus
+          </button>
+        </div>
+      </div>
+
+      <!-- Responsive Grid Layout for All Packages -->
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8 max-w-7xl mx-auto px-1 sm:px-0" id="packages-grid">
+        {allPackages.map((pkg, i) => (
+          <PackageCard pkg={pkg} delay={i * 50} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Alur Pendaftaran -->
+  <div class="bg-white py-10">
+    <div class="container mx-auto px-4 max-w-4xl text-center mb-8">
+      <h2 class="text-3xl font-bold text-slate-900">Alur Pendaftaran & Persiapan</h2>
+      <p class="text-slate-600 mt-2">Langkah mudah untuk memulai perjalanan ibadah Anda.</p>
+    </div>
+    <AlurPendaftaranSection />
+  </div>
+
+  <!-- Modal Detail Paket -->
+  <dialog id="paketModal" class="backdrop:bg-slate-900/80 bg-transparent p-4 w-full max-w-lg m-auto rounded-3xl shadow-2xl opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="modalContent" class="bg-white rounded-3xl overflow-hidden relative shadow-2xl transform scale-95 transition-transform duration-300">
+      <!-- Close Button -->
+      <button onclick="closeModal()" class="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white/40 transition-colors">
+        <X class="w-5 h-5" />
+      </button>
+      
+      <!-- Header -->
+      <div class="bg-gradient-to-br from-slate-900 to-primary p-6 pt-10 text-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20 mix-blend-overlay bg-[url('/images/hero-bg.png')] bg-cover bg-center"></div>
+        <h3 id="modalTitle" class="text-2xl font-bold text-white relative z-10">Judul Paket</h3>
+      </div>
+      
+      <!-- Content -->
+      <div class="p-6">
+        <div class="space-y-4 mb-8 bg-neutral-50 p-5 rounded-2xl border border-neutral-100">
+          <div class="flex items-center gap-4 text-slate-700">
+            <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+              <Plane class="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <div class="text-xs text-slate-500">Maskapai</div>
+              <div id="modalAirline" class="font-semibold text-slate-900">Maskapai</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 text-slate-700">
+            <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+              <Building class="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <div class="text-xs text-slate-500">Akomodasi</div>
+              <div id="modalHotel" class="font-semibold text-slate-900">Hotel</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 text-slate-700">
+            <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+              <Calendar class="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <div class="text-xs text-slate-500">Jadwal Keberangkatan</div>
+              <div id="modalDate" class="font-semibold text-slate-900">Tanggal</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex flex-col items-center justify-center mb-6">
+          <div class="text-sm text-slate-500 mb-1">Harga Mulai Dari</div>
+          <div id="modalPrice" class="text-3xl font-black text-slate-900">Rp 0</div>
+        </div>
+        
+        <a id="modalWaLink" href="#" target="_blank" class="w-full flex items-center justify-center gap-2 bg-green-600 text-white hover:bg-green-700 font-bold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg">
+          <MessageCircle class="w-5 h-5" /> Konsultasi via WhatsApp
+        </a>
+      </div>
+    </div>
+  </dialog>
+
+</MainLayout>
+
+<script is:inline>
+  const modal = document.getElementById('paketModal');
+  const modalContent = document.getElementById('modalContent');
+  
+  function openModal(title, price, airline, hotel, date) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalPrice').innerText = 'Rp ' + price;
+    document.getElementById('modalAirline').innerText = airline;
+    document.getElementById('modalHotel').innerText = 'Hotel ' + hotel;
+    document.getElementById('modalDate').innerText = date;
+    document.getElementById('modalWaLink').href = `https://wa.me/6281234567890?text=Halo%20PaKeM%20Tours,%20saya%20tertarik%20dengan%20${encodeURIComponent(title)}%20dan%20ingin%20berkonsultasi.`;
+    
+    modal.showModal();
+    // Fade in
+    setTimeout(() => {
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.classList.add('opacity-100', 'pointer-events-auto');
+      modalContent.classList.remove('scale-95');
+      modalContent.classList.add('scale-100');
+    }, 10);
+  }
+  
+  function closeModal() {
+    modal.classList.add('opacity-0', 'pointer-events-none');
+    modal.classList.remove('opacity-100', 'pointer-events-auto');
+    modalContent.classList.add('scale-95');
+    modalContent.classList.remove('scale-100');
+    setTimeout(() => {
+      modal.close();
+    }, 300);
+  }
+
+  // Close on backdrop click
+  modal.addEventListener('click', (e) => {
+    const dialogDimensions = modal.getBoundingClientRect();
+    if (
+      e.clientX < dialogDimensions.left ||
+      e.clientX > dialogDimensions.right ||
+      e.clientY < dialogDimensions.top ||
+      e.clientY > dialogDimensions.bottom
+    ) {
+      closeModal();
+    }
+  });
+
+  // Tabs Logic
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const pkgCards = document.querySelectorAll('.pkg-card');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Update active button styles
+      tabBtns.forEach(b => {
+        b.classList.remove('bg-slate-900', 'text-white');
+        b.classList.add('text-slate-500');
+      });
+      btn.classList.remove('text-slate-500');
+      btn.classList.add('bg-slate-900', 'text-white');
+
+      const target = btn.getAttribute('data-target');
+
+      // Filter cards
+      pkgCards.forEach(card => {
+        if (target === 'all' || card.getAttribute('data-type') === target) {
+          card.style.display = 'flex';
+          // Trigger reflow to restart animation
+          card.classList.remove('animate-fade-in-up');
+          void card.offsetWidth;
+          card.classList.add('animate-fade-in-up');
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
