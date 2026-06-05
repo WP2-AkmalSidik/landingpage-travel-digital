@@ -1,0 +1,112 @@
+---
+import { ShieldCheck, Users, HeartHandshake, Award } from '@lucide/astro';
+---
+
+<section class="relative min-h-screen flex items-center pt-20 pb-10 overflow-hidden bg-slate-900">
+  <!-- Full-width Background Image -->
+  <div class="absolute inset-0 bg-[url('/images/tentang_hero_kaaba_1780650584536.png')] bg-cover bg-[center_top] md:bg-[right_center] opacity-90 z-0"></div>
+  
+  <!-- Gradient Overlay (Solid dark left -> transparent right) -->
+  <div class="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-900/20 md:to-transparent z-10"></div>
+
+  <div class="container mx-auto px-4 max-w-7xl relative z-20">
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Text Content -->
+      <div class="lg:col-span-7 xl:col-span-7 animate-fade-in-up">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="text-gold font-bold tracking-widest uppercase text-sm">Tentang Kami</span>
+          <div class="h-[1px] w-12 bg-gold"></div>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+          Melayani dengan Hati, <br class="hidden md:block" />
+          <span class="text-gold">Mengantarkan ke Baitullah</span>
+        </h1>
+        
+        <p class="text-lg text-neutral-300 mb-12 max-w-xl leading-relaxed">
+          Pakem Tours hadir untuk menjadi sahabat perjalanan ibadah Anda. Kami berkomitmen memberikan pelayanan terbaik, amanah, dan profesional untuk setiap jamaah.
+        </p>
+
+        <!-- Trust Badges -->
+        <div class="flex flex-wrap gap-x-6 gap-y-4 md:gap-x-10 mt-12 pt-12 border-t border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gold/10 border border-gold/20 text-gold flex items-center justify-center shrink-0">
+              <ShieldCheck class="w-5 h-5" />
+            </div>
+            <div>
+              <h4 class="text-white font-bold text-[11px] sm:text-xs leading-tight">Amanah & Terpercaya</h4>
+              <p class="text-neutral-400 text-[9px] sm:text-[10px] mt-0.5">Izin Resmi Kemenag RI</p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gold/10 border border-gold/20 text-gold flex items-center justify-center shrink-0">
+              <Users class="w-5 h-5" />
+            </div>
+            <div>
+              <h4 class="text-white font-bold text-[11px] sm:text-xs leading-tight">Berpengalaman</h4>
+              <p class="text-neutral-400 text-[9px] sm:text-[10px] mt-0.5">Melayani Ribuan Jamaah</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gold/10 border border-gold/20 text-gold flex items-center justify-center shrink-0">
+              <HeartHandshake class="w-5 h-5" />
+            </div>
+            <div>
+              <h4 class="text-white font-bold text-[11px] sm:text-xs leading-tight">Pelayanan Sepenuh Hati</h4>
+              <p class="text-neutral-400 text-[9px] sm:text-[10px] mt-0.5">Jamaah adalah prioritas</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gold/10 border border-gold/20 text-gold flex items-center justify-center shrink-0">
+              <Award class="w-5 h-5" />
+            </div>
+            <div>
+              <h4 class="text-white font-bold text-[11px] sm:text-xs leading-tight">Profesional</h4>
+              <p class="text-neutral-400 text-[9px] sm:text-[10px] mt-0.5">Tim & Sistem kerja terstruktur</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Side Card -->
+      <div class="hidden lg:flex lg:col-span-5 xl:col-span-5 justify-end animate-fade-in-up" style="animation-delay: 300ms;">
+        <div class="bg-slate-900/60 backdrop-blur-md border border-white/20 rounded-3xl p-6 sm:p-8 w-full max-w-sm shadow-2xl relative overflow-hidden group">
+          <div class="absolute -inset-4 bg-gradient-to-tr from-gold/30 to-transparent blur-2xl group-hover:opacity-100 opacity-50 transition duration-700 pointer-events-none"></div>
+          
+          <div class="relative z-10">
+            <div class="text-gold font-bold text-sm tracking-widest uppercase mb-2">Layanan 24 Jam</div>
+            <h3 class="text-white text-3xl font-bold mb-4 leading-tight">Selalu Ada Untuk Anda</h3>
+            <p class="text-neutral-300 text-sm mb-8 leading-relaxed">
+              Tim kami siap membantu segala kebutuhan dan pertanyaan Anda seputar persiapan perjalanan ibadah ke tanah suci.
+            </p>
+            
+            <a href="#konsultasi" class="flex items-center justify-center gap-2 bg-gradient-to-r from-gold to-gold-light hover:from-gold-light hover:to-gold text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg hover:-translate-y-1 w-full text-center group/btn">
+              <svg class="w-5 h-5 group-hover/btn:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+              Konsultasi Sekarang
+            </a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<style>
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

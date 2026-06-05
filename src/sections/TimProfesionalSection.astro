@@ -1,0 +1,45 @@
+---
+const team = [
+  {
+    name: 'Ust. Ahmad Fauzi',
+    role: 'Pembimbing Ibadah',
+    image: 'https://randomuser.me/api/portraits/men/32.jpg'
+  },
+  {
+    name: 'Ust. Muhammad Ali',
+    role: 'Pembimbing Ibadah',
+    image: 'https://randomuser.me/api/portraits/men/44.jpg'
+  },
+  {
+    name: 'H. Abdul Karim',
+    role: 'Direktur Utama',
+    image: 'https://randomuser.me/api/portraits/men/62.jpg'
+  },
+  {
+    name: 'Rina Marlina',
+    role: 'Customer Care',
+    image: 'https://randomuser.me/api/portraits/women/44.jpg'
+  }
+];
+---
+
+<section class="py-16 md:py-24 bg-white">
+  <div class="container mx-auto px-4 max-w-7xl">
+    <div class="text-center md:text-left mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Tim Profesional & Berpengalaman</h2>
+      <p class="text-slate-600">Kami didukung oleh tim yang kompeten di bidangnya dan pembimbing ibadah bersertifikat.</p>
+    </div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+      {team.map((member) => (
+        <div class="group flex flex-col items-center">
+          <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden mb-5 border-4 border-neutral-50 shadow-lg group-hover:border-gold transition-colors duration-300">
+            <img src={member.image} alt={member.name} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-1 text-center">{member.name}</h3>
+          <p class="text-sm text-primary font-medium text-center">{member.role}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

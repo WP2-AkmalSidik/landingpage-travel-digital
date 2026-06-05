@@ -1,0 +1,67 @@
+---
+import { ShieldCheck, HeartHandshake } from '@lucide/astro';
+---
+
+<section class="py-16 md:py-24 bg-white border-t border-neutral-100">
+  <div class="container mx-auto px-4 max-w-7xl">
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+      
+      <!-- Left Column: Izin & Sertifikasi -->
+      <div class="bg-neutral-50 rounded-[2.5rem] p-8 md:p-12 border border-neutral-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+        <h2 class="text-2xl font-bold text-slate-900 mb-2">Izin & Sertifikasi Resmi</h2>
+        <p class="text-sm text-slate-500 mb-10 leading-relaxed">Pakem Tours berizin resmi dan terdaftar di Kementerian Agama RI.</p>
+        
+        <div class="grid grid-cols-3 gap-6 place-items-center">
+          <div class="flex flex-col items-center text-center gap-3">
+            <img src="/images/logo-kemenag.png" alt="Kemenag RI" class="h-16 md:h-20 object-contain drop-shadow-sm" />
+            <span class="text-[9px] sm:text-[10px] font-bold text-slate-900 uppercase">Kementerian Agama<br/>Republik Indonesia</span>
+          </div>
+          
+          <div class="flex flex-col items-center text-center gap-3">
+            <img src="/images/logo-iata.png" alt="IATA" class="h-16 md:h-20 object-contain drop-shadow-sm grayscale contrast-125" />
+            <span class="text-[9px] sm:text-[10px] font-bold text-slate-900 uppercase">IATA Accredited<br/>Agent</span>
+          </div>
+          
+          <div class="flex flex-col items-center text-center gap-3">
+            <img src="/images/logo-amphuri.png" alt="AMPHURI" class="h-16 md:h-20 object-contain drop-shadow-sm" />
+            <span class="text-[9px] sm:text-[10px] font-bold text-slate-900 uppercase">Anggota Pelayan<br/>Umat</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Amanah & Terpercaya -->
+      <div class="bg-neutral-50 rounded-[2.5rem] p-8 md:p-12 border border-neutral-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col md:flex-row gap-8 items-center">
+        
+        <div class="flex-1">
+          <h2 class="text-xl font-bold text-slate-900 mb-2">Amanah & Terpercaya</h2>
+          <p class="text-xs text-slate-500 mb-8 leading-relaxed">Pakem Tours berkomitmen memberikan pelayanan terbaik dengan standar profesional dan diakui resmi.</p>
+          
+          <div class="grid grid-cols-4 gap-4 place-items-center">
+            <div class="flex flex-col items-center text-center gap-2">
+              <ShieldCheck class="w-8 h-8 text-primary" stroke-width="1.5" />
+              <span class="text-[8px] sm:text-[9px] font-bold text-slate-600 leading-tight">Izin Resmi<br/>Kemenag RI</span>
+            </div>
+            <div class="flex flex-col items-center text-center gap-2">
+              <HeartHandshake class="w-8 h-8 text-primary" stroke-width="1.5" />
+              <span class="text-[8px] sm:text-[9px] font-bold text-slate-600 leading-tight">100% ASLI &<br/>Sertifikasi</span>
+            </div>
+            <div class="flex flex-col items-center text-center gap-2">
+              <img src="/images/logo-iata.png" alt="IATA" class="w-8 h-8 object-contain grayscale" />
+              <span class="text-[8px] sm:text-[9px] font-bold text-slate-600 leading-tight">IATA<br/>Accredited Agent</span>
+            </div>
+            <div class="flex flex-col items-center text-center gap-2">
+              <img src="/images/logo-amphuri.png" alt="AMPHURI" class="w-8 h-8 object-contain grayscale" />
+              <span class="text-[8px] sm:text-[9px] font-bold text-slate-600 leading-tight">AMPHURI<br/>Bangga Melayani Umat</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="w-full md:w-56 shrink-0 rounded-2xl overflow-hidden shadow-lg border-4 border-white">
+          <img src="/images/amanah_team_1780650611344.png" alt="Tim Amanah" class="w-full h-full object-cover aspect-[4/3] md:aspect-[3/4]" />
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+</section>
