@@ -1,72 +1,88 @@
 ---
-import { Plane, Building, Calendar, ArrowRight, MessageCircle, X } from '@lucide/astro';
+import { ArrowRight, Plane, Building, Calendar, MessageCircle, X } from '@lucide/astro';
 import PackageCard from '../components/PackageCard.astro';
 
 const packages = [
   {
-    badge: 'REGULER',
-    title: 'Umrah Reguler 9 Hari',
-    price: '30.800.000',
-    airline: 'Saudi Airlines',
-    hotel: 'Bintang 4',
+    badge: '9 HARI',
+    title: 'Umroh Ekonomis',
+    price: '25.900.000',
+    airline: 'Saudi Airline',
+    hotel: 'Bintang 3',
     date: '12 Juni 2024',
     seats: 12,
-    bg: 'bg-gradient-to-br from-blue-900 to-primary'
+    type: 'Umrah',
+    image: '/images/hero-bg.png',
+    mekkahDist: '± 700m',
+    madinahDist: '± 500m',
+    isRecommended: false
   },
   {
-    badge: 'PLUS TURKI',
-    title: 'Umrah Plus Turki 12 Hari',
-    price: '39.800.000',
-    airline: 'Turkish Airlines',
-    hotel: 'Bintang 5',
+    badge: '12 HARI',
+    title: 'Umroh Reguler',
+    price: '29.900.000',
+    airline: 'Saudi Airline',
+    hotel: 'Bintang 4',
     date: '20 Juli 2024',
     seats: 7,
-    bg: 'bg-gradient-to-br from-orange-600 to-gold'
+    type: 'Umrah',
+    image: 'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&q=80&w=800',
+    mekkahDist: '± 450m',
+    madinahDist: '± 300m',
+    isRecommended: false
   },
   {
-    badge: 'RAMADHAN',
-    title: 'Umrah Ramadhan 12 Hari',
-    price: '42.500.000',
-    airline: 'Saudi Airlines',
-    hotel: 'Bintang 5',
+    badge: '12 HARI',
+    title: 'Umroh Plus',
+    price: '33.900.000',
+    airline: 'Saudi Airline',
+    hotel: 'Bintang 4',
     date: '5 Maret 2024',
     seats: 10,
-    bg: 'bg-gradient-to-br from-purple-900 to-slate-900'
+    type: 'Umrah',
+    image: '/images/hero-bg.png',
+    mekkahDist: '± 200m',
+    madinahDist: '± 200m',
+    isRecommended: false
   },
   {
-    badge: 'HAJI KHUSUS',
-    title: 'Haji Khusus 24 Hari',
-    price: '135.000.000',
-    airline: 'Garuda Indonesia',
+    badge: '14 HARI',
+    title: 'Umroh Premium',
+    price: '39.900.000',
+    airline: 'Saudi Airline',
     hotel: 'Bintang 5',
-    date: '10 Mei 2024',
-    seats: 5,
-    bg: 'bg-gradient-to-br from-emerald-900 to-slate-900'
+    date: '15 April 2024',
+    seats: 15,
+    type: 'Umrah',
+    image: 'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&q=80&w=800',
+    mekkahDist: '± 150m',
+    madinahDist: '± 150m',
+    isRecommended: true
   }
 ];
 ---
 
 <section id="paket" class="py-24 bg-neutral-50 border-t border-neutral-200">
-  <div class="container mx-auto px-4">
+  <div class="container mx-auto px-4 max-w-7xl relative z-10">
     <div class="text-center max-w-3xl mx-auto mb-16 animate-fade-in-up">
       <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-4">
-        Pilihan Paket <span class="text-primary">Umrah & Haji</span>
+        Pilihan Paket <span class="text-gold">Umrah & Haji</span>
       </h2>
       <p class="text-lg text-slate-600">
         Pilih paket yang sesuai dengan kebutuhan dan jadwal Anda. Kenyamanan ibadah adalah prioritas kami.
       </p>
     </div>
 
-    <!-- Responsive Grid Layout -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 max-w-7xl mx-auto px-2 sm:px-0">
+    <!-- Package Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
       {packages.map((pkg, i) => (
         <PackageCard pkg={pkg} delay={i * 100} />
       ))}
     </div>
     
-    <div class="text-center mt-8">
-      <a href="/paket" class="inline-flex items-center gap-2 text-primary hover:text-gold font-bold transition-colors">
-        Lihat Semua Paket <ArrowRight class="w-4 h-4" />
+    <div class="text-center mt-16 relative z-10">
+      <a href="/paket-umroh" class="inline-flex items-center gap-2 text-slate-900 border-2 border-slate-900 hover:bg-slate-900 hover:text-white px-8 py-3.5 rounded-full font-bold transition-all shadow-lg hover:shadow-xl">
+        Lihat Semua Paket <ArrowRight class="w-5 h-5" />
       </a>
     </div>
   </div>
@@ -74,18 +90,13 @@ const packages = [
   <!-- Modal Detail Paket (Home) -->
   <dialog id="paketModal" class="backdrop:bg-slate-900/80 bg-transparent p-4 w-full max-w-lg m-auto rounded-3xl shadow-2xl opacity-0 pointer-events-none transition-opacity duration-300">
     <div id="homeModalContent" class="bg-white rounded-3xl overflow-hidden relative shadow-2xl transform scale-95 transition-transform duration-300">
-      <!-- Close Button -->
       <button onclick="closeModal()" class="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white/40 transition-colors">
         <X class="w-5 h-5" />
       </button>
-      
-      <!-- Header -->
       <div class="bg-gradient-to-br from-slate-900 to-primary p-6 pt-10 text-center relative overflow-hidden">
         <div class="absolute inset-0 opacity-20 mix-blend-overlay bg-[url('/images/hero-bg.png')] bg-cover bg-center"></div>
         <h3 id="homeModalTitle" class="text-2xl font-bold text-white relative z-10">Judul Paket</h3>
       </div>
-      
-      <!-- Content -->
       <div class="p-6">
         <div class="space-y-4 mb-8 bg-neutral-50 p-5 rounded-2xl border border-neutral-100">
           <div class="flex items-center gap-4 text-slate-700">
@@ -116,12 +127,10 @@ const packages = [
             </div>
           </div>
         </div>
-        
         <div class="flex flex-col items-center justify-center mb-6">
           <div class="text-sm text-slate-500 mb-1">Harga Mulai Dari</div>
           <div id="homeModalPrice" class="text-3xl font-black text-slate-900">Rp 0</div>
         </div>
-        
         <a id="homeModalWaLink" href="#" target="_blank" class="w-full flex items-center justify-center gap-2 bg-green-600 text-white hover:bg-green-700 font-bold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg">
           <MessageCircle class="w-5 h-5" /> Konsultasi via WhatsApp
         </a>
@@ -143,26 +152,28 @@ const packages = [
     document.getElementById('homeModalWaLink').href = `https://wa.me/6281234567890?text=Halo%20PaKeM%20Tours,%20saya%20tertarik%20dengan%20${encodeURIComponent(title)}%20dan%20ingin%20berkonsultasi.`;
     
     hModal.showModal();
-    // Fade in
     setTimeout(() => {
       hModal.classList.remove('opacity-0', 'pointer-events-none');
       hModal.classList.add('opacity-100', 'pointer-events-auto');
-      hModalContent.classList.remove('scale-95');
-      hModalContent.classList.add('scale-100');
+      if (hModalContent) {
+        hModalContent.classList.remove('scale-95');
+        hModalContent.classList.add('scale-100');
+      }
     }, 10);
   }
   
   function closeModal() {
     hModal.classList.add('opacity-0', 'pointer-events-none');
     hModal.classList.remove('opacity-100', 'pointer-events-auto');
-    hModalContent.classList.add('scale-95');
-    hModalContent.classList.remove('scale-100');
+    if (hModalContent) {
+      hModalContent.classList.add('scale-95');
+      hModalContent.classList.remove('scale-100');
+    }
     setTimeout(() => {
       hModal.close();
     }, 300);
   }
 
-  // Close on backdrop click
   if (hModal) {
     hModal.addEventListener('click', (e) => {
       const dialogDimensions = hModal.getBoundingClientRect();
@@ -179,9 +190,6 @@ const packages = [
 </script>
 
 <style>
-  .hide-scrollbar::-webkit-scrollbar { display: none; }
-  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-  
   .animate-fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
     opacity: 0;

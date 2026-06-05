@@ -1,0 +1,399 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import AlurPendaftaranSection from '../sections/AlurPendaftaranSection.astro';
+import { Plane, Building, Calendar, ArrowRight, MessageCircle, X, Star } from '@lucide/astro';
+import PackageCard from '../components/PackageCard.astro';
+
+const allPackages = [
+  {
+    badge: '9 HARI',
+    title: 'Umroh Ekonomis',
+    price: '25.900.000',
+    airline: 'Saudi Airline',
+    hotel: 'Bintang 3',
+    date: '12 Juni 2024',
+    seats: 12,
+    bg: 'bg-gradient-to-br from-blue-900 to-primary',
+    type: 'Umrah',
+    image: '/images/hero-bg.png',
+    mekkahDist: '± 700m',
+    madinahDist: '± 500m',
+    isRecommended: false
+  },
+  {
+    badge: '12 HARI',
+    title: 'Umroh Reguler',
+    price: '29.900.000',
+    airline: 'Saudi Airline',
+    hotel: 'Bintang 4',
+    date: '20 Juli 2024',
+    seats: 7,
+    bg: 'bg-gradient-to-br from-orange-600 to-gold',
+    type: 'Umrah',
+    image: 'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&q=80&w=800',
+    mekkahDist: '± 450m',
+    madinahDist: '± 300m',
+    isRecommended: false
+  },
+  {
+    badge: '12 HARI',
+    title: 'Umroh Plus',
+    price: '33.900.000',
+    airline: 'Saudi Airline',
+    hotel: 'Bintang 4',
+    date: '5 Maret 2024',
+    seats: 10,
+    bg: 'bg-gradient-to-br from-purple-900 to-slate-900',
+    type: 'Umrah',
+    image: '/images/hero-bg.png',
+    mekkahDist: '± 200m',
+    madinahDist: '± 200m',
+    isRecommended: false
+  },
+  {
+    badge: '14 HARI',
+    title: 'Umroh Premium',
+    price: '39.900.000',
+    airline: 'Saudi Airline',
+    hotel: 'Bintang 5',
+    date: '15 April 2024',
+    seats: 15,
+    bg: 'bg-gradient-to-br from-cyan-900 to-blue-800',
+    type: 'Umrah',
+    image: 'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&q=80&w=800',
+    mekkahDist: '± 150m',
+    madinahDist: '± 150m',
+    isRecommended: true
+  }
+];
+---
+
+<MainLayout 
+  title="Semua Paket Umrah & Haji | PaKeM Tours"
+  description="Daftar lengkap pilihan paket Umrah Reguler, Plus, Ramadhan, serta Haji Khusus dari PaKeM Tours."
+>
+  <!-- Page Header -->
+  <section class="min-h-screen flex items-center pt-32 pb-16 relative overflow-hidden bg-[#0a1930] border-b border-[#0a1930]/50">
+    <!-- Dynamic Image Background with Gradient Mask -->
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-[url('/images/hero-bg.png')] bg-cover bg-[center_top] md:bg-[right_center] opacity-90 z-0"></div>
+      <div class="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-[#0a1930] via-[#0a1930]/95 to-[#0a1930]/20 md:to-transparent z-10"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 max-w-7xl relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        
+        <!-- Left Side: Text & Features -->
+        <div class="animate-fade-in-up">
+          <div class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-gold-light text-xs sm:text-sm font-semibold mb-6 sm:mb-8 animate-fade-in-up shadow-xl">
+            <span class="flex h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-gold animate-pulse shadow-[0_0_8px_rgba(182,128,38,0.8)]"></span>
+            PRODUK HAJI
+          </div>
+          <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.1] sm:leading-[1.05] mb-6 sm:mb-8 animate-fade-in-up drop-shadow-2xl" style="animation-delay: 100ms;">
+            Haji Khusus,<br/>
+            Ibadah Mabrur
+          </h1>
+          <p class="text-base sm:text-lg md:text-xl text-neutral-200 mb-8 sm:mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed animate-fade-in-up font-light" style="animation-delay: 200ms;">
+            Paket haji pilihan dengan pelayanan terbaik, fasilitas nyaman, dan bimbingan ibadah profesional.
+          </p>
+          
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center sm:text-left">
+            <div class="flex flex-col items-center sm:items-start gap-3">
+              <div class="w-12 h-12 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 flex items-center justify-center text-gold shadow-lg">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-white mb-1">Bimbingan Ibadah</h4>
+                <p class="text-[10px] text-neutral-400">Pembimbing berpengalaman selama perjalanan</p>
+              </div>
+            </div>
+            
+            <div class="flex flex-col items-center sm:items-start gap-3">
+              <div class="w-12 h-12 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 flex items-center justify-center text-gold shadow-lg">
+                <Building class="w-6 h-6" />
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-white mb-1">Hotel Nyaman</h4>
+                <p class="text-[10px] text-neutral-400">Lokasi strategis dekat Masjidil Haram & Nabawi</p>
+              </div>
+            </div>
+            
+            <div class="flex flex-col items-center sm:items-start gap-3">
+              <div class="w-12 h-12 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 flex items-center justify-center text-gold shadow-lg">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-white mb-1">Transportasi VIP</h4>
+                <p class="text-[10px] text-neutral-400">Perjalanan nyaman dengan armada berkualitas</p>
+              </div>
+            </div>
+            
+            <div class="flex flex-col items-center sm:items-start gap-3">
+              <div class="w-12 h-12 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 flex items-center justify-center text-gold shadow-lg">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.965 11.965 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-white mb-1">Aman & Terpercaya</h4>
+                <p class="text-[10px] text-neutral-400">Izin resmi, amanah, dan berpengalaman</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right Side: Floating Card -->
+        <div class="relative h-[300px] lg:h-[500px] w-full flex items-end lg:items-center justify-center lg:justify-end animate-fade-in-up" style="animation-delay: 200ms;">
+          <!-- Floating Card positioned over the background -->
+          <div class="bg-slate-900/60 backdrop-blur-md rounded-3xl p-6 lg:p-8 shadow-2xl max-w-sm border border-white/20 relative z-20 mt-10 lg:mt-0 lg:translate-x-4 lg:translate-y-8 group overflow-hidden">
+            <div class="absolute -inset-4 bg-gradient-to-tr from-gold/30 to-transparent blur-2xl group-hover:opacity-100 opacity-50 transition duration-700 pointer-events-none"></div>
+            
+            <div class="relative z-10">
+              <h3 class="font-bold text-white mb-6 text-xl lg:text-2xl">Kenapa Memilih Pakem Tours?</h3>
+              <ul class="space-y-4">
+                {[
+                  'Berizin Resmi Kemenag',
+                  'Pembimbing Ibadah Profesional',
+                  'Jadwal Fleksibel',
+                  'Layanan 24 Jam',
+                  'Ribuan Jamaah Berangkat Setiap Tahun'
+                ].map((item) => (
+                  <li class="flex items-center gap-3 text-sm text-neutral-200 font-medium">
+                    <div class="w-6 h-6 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center shrink-0 shadow-sm">
+                      <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Main Content -->
+  <section class="py-16 bg-white relative">
+    <div class="container mx-auto px-4 max-w-7xl">
+      
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-[#0a1930]">Pilihan Paket Haji</h2>
+      </div>
+
+      <!-- Packages Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {allPackages.map((pkg, i) => (
+          <PackageCard pkg={pkg} delay={i * 100} />
+        ))}
+      </div>
+
+      <!-- Bottom Feature Bar -->
+      <div class="mt-16 bg-neutral-50 rounded-2xl border border-neutral-100 p-6 shadow-sm">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 divide-x-0 md:divide-x divide-neutral-200">
+          
+          <div class="flex items-center gap-4 justify-center md:justify-start md:pl-6">
+            <div class="w-10 h-10 rounded-full border-2 border-gold flex items-center justify-center text-gold shrink-0">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <div>
+              <h4 class="font-bold text-[#0a1930] text-sm">Pembayaran Mudah</h4>
+              <p class="text-[10px] text-slate-500">Cicilan 0% hingga 12 bulan</p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-4 justify-center md:justify-start md:pl-6">
+            <div class="w-10 h-10 rounded-full border-2 border-gold flex items-center justify-center text-gold shrink-0">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.965 11.965 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            </div>
+            <div>
+              <h4 class="font-bold text-[#0a1930] text-sm">Aman & Terjamin</h4>
+              <p class="text-[10px] text-slate-500">Uang aman, berangkat aman</p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-4 justify-center md:justify-start md:pl-6">
+            <div class="w-10 h-10 rounded-full border-2 border-gold flex items-center justify-center text-gold shrink-0">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+            </div>
+            <div>
+              <h4 class="font-bold text-[#0a1930] text-sm">Pendampingan Lengkap</h4>
+              <p class="text-[10px] text-slate-500">Sebelum, selama, setelah umroh</p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-4 justify-center md:justify-start md:pl-6">
+            <div class="w-10 h-10 rounded-full border-2 border-gold flex items-center justify-center text-gold shrink-0">
+              <Star class="w-5 h-5" />
+            </div>
+            <div>
+              <h4 class="font-bold text-[#0a1930] text-sm">Jamaah Puas</h4>
+              <p class="text-[10px] text-slate-500">Terbukti dari ribuan testimoni</p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Timeline Alur Pendaftaran -->
+  <div class="bg-white py-10">
+    <div class="container mx-auto px-4 max-w-4xl text-center mb-8">
+      <h2 class="text-3xl font-bold text-slate-900">Alur Pendaftaran & Persiapan</h2>
+      <p class="text-slate-600 mt-2">Langkah mudah untuk memulai perjalanan ibadah Anda.</p>
+    </div>
+    <AlurPendaftaranSection />
+  </div>
+
+  <!-- Modal Detail Paket -->
+  <dialog id="paketModal" class="backdrop:bg-slate-900/80 bg-transparent p-4 w-full max-w-lg m-auto rounded-3xl shadow-2xl opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="modalContent" class="bg-white rounded-3xl overflow-hidden relative shadow-2xl transform scale-95 transition-transform duration-300">
+      <!-- Close Button -->
+      <button onclick="closeModal()" class="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white/40 transition-colors">
+        <X class="w-5 h-5" />
+      </button>
+      
+      <!-- Header -->
+      <div class="bg-gradient-to-br from-slate-900 to-primary p-6 pt-10 text-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20 mix-blend-overlay bg-[url('/images/hero-bg.png')] bg-cover bg-center"></div>
+        <h3 id="modalTitle" class="text-2xl font-bold text-white relative z-10">Judul Paket</h3>
+      </div>
+      
+      <!-- Content -->
+      <div class="p-6">
+        <div class="space-y-4 mb-8 bg-neutral-50 p-5 rounded-2xl border border-neutral-100">
+          <div class="flex items-center gap-4 text-slate-700">
+            <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+              <Plane class="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <div class="text-xs text-slate-500">Maskapai</div>
+              <div id="modalAirline" class="font-semibold text-slate-900">Maskapai</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 text-slate-700">
+            <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+              <Building class="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <div class="text-xs text-slate-500">Akomodasi</div>
+              <div id="modalHotel" class="font-semibold text-slate-900">Hotel</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 text-slate-700">
+            <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+              <Calendar class="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <div class="text-xs text-slate-500">Jadwal Keberangkatan</div>
+              <div id="modalDate" class="font-semibold text-slate-900">Tanggal</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex flex-col items-center justify-center mb-6">
+          <div class="text-sm text-slate-500 mb-1">Harga Mulai Dari</div>
+          <div id="modalPrice" class="text-3xl font-black text-slate-900">Rp 0</div>
+        </div>
+        
+        <a id="modalWaLink" href="#" target="_blank" class="w-full flex items-center justify-center gap-2 bg-green-600 text-white hover:bg-green-700 font-bold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg">
+          <MessageCircle class="w-5 h-5" /> Konsultasi via WhatsApp
+        </a>
+      </div>
+    </div>
+  </dialog>
+
+</MainLayout>
+
+<script is:inline>
+  const modal = document.getElementById('paketModal');
+  const modalContent = document.getElementById('modalContent');
+  
+  function openModal(title, price, airline, hotel, date) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalPrice').innerText = 'Rp ' + price;
+    document.getElementById('modalAirline').innerText = airline;
+    document.getElementById('modalHotel').innerText = 'Hotel ' + hotel;
+    document.getElementById('modalDate').innerText = date;
+    document.getElementById('modalWaLink').href = `https://wa.me/6281234567890?text=Halo%20PaKeM%20Tours,%20saya%20tertarik%20dengan%20${encodeURIComponent(title)}%20dan%20ingin%20berkonsultasi.`;
+    
+    modal.showModal();
+    // Fade in
+    setTimeout(() => {
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.classList.add('opacity-100', 'pointer-events-auto');
+      modalContent.classList.remove('scale-95');
+      modalContent.classList.add('scale-100');
+    }, 10);
+  }
+  
+  function closeModal() {
+    modal.classList.add('opacity-0', 'pointer-events-none');
+    modal.classList.remove('opacity-100', 'pointer-events-auto');
+    modalContent.classList.add('scale-95');
+    modalContent.classList.remove('scale-100');
+    setTimeout(() => {
+      modal.close();
+    }, 300);
+  }
+
+  // Close on backdrop click
+  modal.addEventListener('click', (e) => {
+    const dialogDimensions = modal.getBoundingClientRect();
+    if (
+      e.clientX < dialogDimensions.left ||
+      e.clientX > dialogDimensions.right ||
+      e.clientY < dialogDimensions.top ||
+      e.clientY > dialogDimensions.bottom
+    ) {
+      closeModal();
+    }
+  });
+
+  // Tabs Logic
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const pkgCards = document.querySelectorAll('.pkg-card');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Update active button styles
+      tabBtns.forEach(b => {
+        b.classList.remove('bg-slate-900', 'text-white');
+        b.classList.add('text-slate-500');
+      });
+      btn.classList.remove('text-slate-500');
+      btn.classList.add('bg-slate-900', 'text-white');
+
+      const target = btn.getAttribute('data-target');
+
+      // Filter cards
+      pkgCards.forEach(card => {
+        if (target === 'all' || card.getAttribute('data-type') === target) {
+          card.style.display = 'flex';
+          // Trigger reflow to restart animation
+          card.classList.remove('animate-fade-in-up');
+          void card.offsetWidth;
+          card.classList.add('animate-fade-in-up');
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
