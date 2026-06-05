@@ -1,7 +1,8 @@
 ---
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
-import { Globe, MapPin, Phone, Mail, Clock } from '@lucide/astro';
+import MobileBottomNav from '../components/MobileBottomNav.astro';
+import { Globe, MapPin, Phone, Mail, Clock, MessageCircle, FileText } from '@lucide/astro';
 
 interface Props {
 	title?: string;
@@ -15,10 +16,10 @@ const {
 ---
 
 <!doctype html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<meta name="description" content={description} />
 		<title>{title}</title>
 		
@@ -34,10 +35,30 @@ const {
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
 	</head>
-	<body class="antialiased min-h-screen flex flex-col pt-0">
+	<body class="antialiased min-h-screen flex flex-col pt-0 pb-20 lg:pb-0">
 		<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:p-4 focus:bg-primary focus:text-white focus:z-50">
 			Skip to main content
 		</a>
+
+		<!-- Mobile Top Action Bar (Only visible at the top of the page on mobile) -->
+		<div class="lg:hidden absolute top-6 left-0 w-full px-2 sm:px-4 z-50 flex justify-between items-center pointer-events-none">
+			<!-- Konsultasi Button -->
+			<a href="#konsultasi" class="pointer-events-auto bg-white/10 hover:bg-white/20 backdrop-blur-md px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-full shadow-lg border border-white/20 text-white transition-transform active:scale-95 flex items-center gap-1.5">
+				<MessageCircle class="w-4 h-4" />
+				<span class="text-[10px] sm:text-[11px] font-bold">Konsultasi</span>
+			</a>
+
+			<!-- Mobile Logo -->
+			<a href="/" class="pointer-events-auto bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg border border-white/20 flex-shrink-0">
+				<img src="/images/logo-pakem.png" alt="PaKeM Tours Logo" class="h-7 sm:h-8 w-auto" />
+			</a>
+
+			<!-- Daftar Button -->
+			<a href="/#paket" class="pointer-events-auto bg-gradient-to-r from-gold to-gold-light hover:from-gold-light hover:to-gold px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-full shadow-lg border border-white/20 text-white transition-transform active:scale-95 flex items-center gap-1.5">
+				<FileText class="w-4 h-4" />
+				<span class="text-[10px] sm:text-[11px] font-bold">Daftar</span>
+			</a>
+		</div>
 		
 		<Navbar />
 		
@@ -45,12 +66,14 @@ const {
 			<slot />
 		</main>
 		
+		<MobileBottomNav />
+		
 		<footer class="bg-[#0a0f18] text-neutral-400 pt-24 pb-8 border-t border-white/10 relative overflow-hidden">
 			<!-- Subtle background decoration -->
 			<div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[100px] pointer-events-none"></div>
 			<div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-primary-light/5 rounded-full blur-[100px] pointer-events-none"></div>
 
-			<div class="container mx-auto px-4 relative z-10">
+			<div class="container mx-auto px-4 max-w-7xl relative z-10">
 				<!-- Top Footer: 4-Column Grid -->
 				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16 pb-16">
 					<!-- Col 1: Brand & About -->

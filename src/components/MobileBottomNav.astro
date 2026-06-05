@@ -1,0 +1,61 @@
+---
+import { Home, Users, Plane, MapPin } from '@lucide/astro';
+
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { name: 'Beranda', href: '/#beranda', icon: Home },
+  { name: 'Tentang Kami', href: '/tentang-kami', icon: Users },
+  { name: 'Paket Umroh', href: '/paket-umroh', icon: Plane },
+  { name: 'Paket Haji', href: '/paket-haji', icon: MapPin }
+];
+---
+
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 bg-[#0a1930] border-t border-white/10 shadow-[0_-10px_20px_rgba(0,0,0,0.2)] pb-safe">
+  <div class="flex items-center justify-around h-16 sm:h-20 px-2">
+    {navLinks.map(link => {
+      let isActive = false;
+      if (currentPath === '/') {
+        isActive = link.name === 'Beranda';
+      } else {
+        isActive = !link.href.startsWith('/#') && currentPath.startsWith(link.href);
+      }
+      
+      const IconComponent = link.icon;
+      
+      return (
+        <a 
+          href={link.href}
+          class={`flex flex-col items-center justify-center w-full h-full gap-1 transition-all duration-300 relative group
+            ${isActive ? 'text-gold' : 'text-neutral-400 hover:text-white'}`}
+        >
+          {/* Active Indicator Top Bar */}
+          {isActive && (
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-1 bg-gradient-to-r from-gold to-gold-light rounded-b-md shadow-[0_0_8px_rgba(182,128,38,0.8)]"></div>
+          )}
+          
+          <div class={`relative transition-transform duration-300 ${isActive ? '-translate-y-1' : 'group-hover:-translate-y-1'}`}>
+            <IconComponent class={`w-5 h-5 sm:w-6 sm:h-6 ${isActive ? 'text-gold' : 'text-neutral-400 group-hover:text-white'}`} />
+            
+            {/* Glow effect for active icon */}
+            {isActive && (
+              <div class="absolute inset-0 bg-gold blur-md opacity-30"></div>
+            )}
+          </div>
+          
+          <span class={`text-[10px] sm:text-[11px] font-medium transition-all duration-300
+            ${isActive ? 'font-bold' : ''}`}>
+            {link.name}
+          </span>
+        </a>
+      )
+    })}
+  </div>
+</nav>
+
+<style>
+  /* Safe area padding for iPhones with notch */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+</style>

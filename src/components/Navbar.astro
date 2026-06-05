@@ -1,19 +1,18 @@
 ---
-import { Globe, Menu, X } from '@lucide/astro';
+import { Globe, Menu, X, MessageCircle } from '@lucide/astro';
+
+const currentPath = Astro.url.pathname;
 
 const navLinks = [
   { name: 'Beranda', href: '/#beranda' },
-  { name: 'Kenapa Kami', href: '/#kenapa-kami' },
-  { name: 'Paket', href: '/paket' },
-  { name: 'Fasilitas', href: '/#fasilitas' },
-  { name: 'Alur Daftar', href: '/#alur' },
-  { name: 'Testimoni', href: '/#testimoni' },
-  { name: 'FAQ', href: '/#faq' },
+  { name: 'Tentang Kami', href: '/tentang-kami' },
+  { name: 'Paket Umroh', href: '/paket-umroh' },
+  { name: 'Paket Haji', href: '/paket-haji' }
 ];
 ---
 
-<header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-transparent">
-  <div class="container mx-auto px-4">
+<header id="navbar" class="hidden lg:block fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-transparent">
+  <div class="container mx-auto px-4 max-w-7xl">
     <div class="flex items-center justify-between h-20">
       
       <!-- Logo -->
@@ -24,49 +23,47 @@ const navLinks = [
       <!-- Desktop Nav -->
       <nav class="hidden lg:flex items-center gap-8">
         <ul class="flex items-center gap-6">
-          {navLinks.map(link => (
-            <li>
-              <a 
-                href={link.href} 
-                class="desktop-link text-sm font-medium text-neutral-200 hover:text-gold transition-colors relative group py-2"
-              >
-                {link.name}
-                <span class="indicator absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
-              </a>
-            </li>
-          ))}
+          {navLinks.map(link => {
+            // Logic for active state
+            let isActive = false;
+            if (currentPath === '/') {
+              isActive = link.name === 'Beranda';
+            } else {
+              // Ignore hash links on other pages, only match actual paths like /paket
+              isActive = !link.href.startsWith('/#') && currentPath.startsWith(link.href);
+            }
+            
+            return (
+              <li>
+                <a 
+                  href={link.href} 
+                  class={`desktop-link text-sm font-medium transition-colors relative group py-2 ${isActive ? 'text-gold' : 'text-neutral-200 hover:text-gold'}`}
+                >
+                  {link.name}
+                  <span class={`indicator absolute bottom-0 left-0 h-0.5 bg-gold transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                </a>
+              </li>
+            )
+          })}
         </ul>
-        <a href="/#konsultasi" class="bg-gradient-to-r from-gold to-gold-light hover:from-gold-light hover:to-gold text-white text-sm font-bold px-6 py-2.5 rounded-full transition-transform hover:-translate-y-0.5 shadow-lg hover:shadow-gold/30">
-          Konsultasi Gratis
-        </a>
+        <div class="flex items-center gap-3">
+          <a href="/#konsultasi" class="bg-slate-900 text-white text-sm font-bold px-4 py-2 rounded-full transition-transform hover:-translate-y-0.5 shadow-lg flex items-center gap-2">
+            <div class="bg-white/10 p-1.5 rounded-full">
+              <MessageCircle class="w-4 h-4" />
+            </div>
+            <div class="flex flex-col text-left leading-none">
+              <span class="text-[10px] font-medium text-neutral-300">Konsultasi Gratis</span>
+              <span class="text-xs">0812-3456-7890</span>
+            </div>
+          </a>
+          <a href="/#alur" class="bg-gradient-to-r from-gold to-gold-light hover:from-gold-light hover:to-gold text-white text-sm font-bold px-6 py-3 rounded-full transition-transform hover:-translate-y-0.5 shadow-lg hover:shadow-gold/30">
+            Daftar Sekarang
+          </a>
+        </div>
       </nav>
 
-      <!-- Mobile Menu Button -->
-      <button id="mobile-menu-btn" class="lg:hidden text-white p-2 relative w-10 h-10 flex items-center justify-center focus:outline-none cursor-pointer" aria-label="Toggle Menu">
-        <Menu class="w-6 h-6 absolute transition-all duration-300 transform scale-100 rotate-0 opacity-100 text-white" id="menu-icon" />
-        <X class="w-6 h-6 absolute transition-all duration-300 transform scale-0 rotate-90 opacity-0 text-white" id="close-icon" />
-      </button>
-
-    </div>
-  </div>
-
-  <!-- Mobile Nav Overlay -->
-  <div id="mobile-menu" class="absolute top-20 left-0 w-full bg-slate-900/95 backdrop-blur-xl border-b border-white/10 shadow-2xl transition-all duration-300 ease-in-out opacity-0 invisible -translate-y-4 pointer-events-none z-40">
-    <ul class="flex flex-col px-4 py-6 gap-4">
-      {navLinks.map((link, index) => (
-        <li style={`transition-delay: ${index * 50}ms;`} class="transition-all duration-300 ease-out transform translate-y-4 opacity-0 mobile-link-item">
-          <a href={link.href} class="mobile-link block text-lg font-medium text-white hover:text-gold transition-colors py-2 border-b border-white/5">
-            {link.name}
-          </a>
-        </li>
-      ))}
-      <li style={`transition-delay: ${navLinks.length * 50}ms;`} class="transition-all duration-300 ease-out transform translate-y-4 opacity-0 mobile-link-item pt-4">
-        <a href="/#konsultasi" class="mobile-link block text-center bg-gradient-to-r from-gold to-gold-light text-white font-bold px-6 py-3 rounded-xl shadow-lg">
-          Konsultasi Gratis
-        </a>
-      </li>
-    </ul>
-  </div>
+      <!-- Mobile view: we only show logo, nav moved to bottom -->
+      <div class="lg:hidden w-10"></div> <!-- spacer for flex-between balance -->
 </header>
 
 <script>
@@ -79,130 +76,12 @@ const navLinks = [
       navbar.classList.add('bg-primary/95', 'backdrop-blur-md', 'shadow-lg', 'border-white/10');
       navbar.classList.remove('border-transparent');
     } else {
-      const isMenuOpen = !menu.classList.contains('opacity-0');
-      if (!isMenuOpen) {
+      if (window.scrollY <= 20) {
         navbar.classList.remove('bg-primary/95', 'backdrop-blur-md', 'shadow-lg', 'border-white/10');
         navbar.classList.add('border-transparent');
       }
     }
   });
 
-  // Mobile menu toggle
-  const btn = document.getElementById('mobile-menu-btn');
-  const menuIcon = document.getElementById('menu-icon');
-  const closeIcon = document.getElementById('close-icon');
-  const mobileLinks = document.querySelectorAll('.mobile-link');
-  const mobileLinkItems = document.querySelectorAll('.mobile-link-item');
 
-  function toggleMenu() {
-    const isClosed = menu.classList.contains('opacity-0');
-    
-    if (isClosed) {
-      // Open
-      menu.classList.remove('opacity-0', 'invisible', '-translate-y-4', 'pointer-events-none');
-      menu.classList.add('opacity-100', 'visible', 'translate-y-0', 'pointer-events-auto');
-      
-      // Icon toggle
-      menuIcon.classList.remove('scale-100', 'rotate-0', 'opacity-100');
-      menuIcon.classList.add('scale-0', '-rotate-90', 'opacity-0');
-      
-      closeIcon.classList.remove('scale-0', 'rotate-90', 'opacity-0');
-      closeIcon.classList.add('scale-100', 'rotate-0', 'opacity-100');
-      
-      // Items staggered transition
-      mobileLinkItems.forEach(item => {
-        item.classList.remove('translate-y-4', 'opacity-0');
-        item.classList.add('translate-y-0', 'opacity-100');
-      });
-      
-      navbar.classList.add('bg-primary/95', 'backdrop-blur-md');
-    } else {
-      // Close
-      menu.classList.add('opacity-0', 'invisible', '-translate-y-4', 'pointer-events-none');
-      menu.classList.remove('opacity-100', 'visible', 'translate-y-0', 'pointer-events-auto');
-      
-      // Icon toggle
-      menuIcon.classList.remove('scale-0', '-rotate-90', 'opacity-0');
-      menuIcon.classList.add('scale-100', 'rotate-0', 'opacity-100');
-      
-      closeIcon.classList.remove('scale-100', 'rotate-0', 'opacity-100');
-      closeIcon.classList.add('scale-0', 'rotate-90', 'opacity-0');
-      
-      // Items staggered transition reset
-      mobileLinkItems.forEach(item => {
-        item.classList.add('translate-y-4', 'opacity-0');
-        item.classList.remove('translate-y-0', 'opacity-100');
-      });
-      
-      if (window.scrollY <= 20) {
-        navbar.classList.remove('bg-primary/95', 'backdrop-blur-md');
-      }
-    }
-  }
-
-  btn.addEventListener('click', toggleMenu);
-  
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      const isClosed = menu.classList.contains('opacity-0');
-      if(!isClosed) {
-        toggleMenu();
-      }
-    });
-  });
-
-  // Active section highlighting
-  const sections = document.querySelectorAll('section[id]');
-  const desktopLinks = document.querySelectorAll('.desktop-link');
-
-  // Set active link on load based on pathname
-  const currentPath = window.location.pathname;
-  desktopLinks.forEach(link => {
-    const href = link.getAttribute('href');
-    const indicator = link.querySelector('.indicator');
-    
-    if (href === currentPath || (currentPath.replace(/\/$/, '') === '/paket' && href === '/paket')) {
-      link.classList.add('text-gold', 'font-bold');
-      link.classList.remove('text-neutral-200', 'font-medium');
-      if(indicator) indicator.classList.replace('w-0', 'w-full');
-    }
-  });
-
-  const observerOptions = {
-    root: null,
-    rootMargin: '-20% 0px -70% 0px', // Adjust triggering area
-    threshold: 0
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        
-        desktopLinks.forEach(link => {
-          const indicator = link.querySelector('.indicator');
-          const href = link.getAttribute('href');
-          
-          // Don't override if we are on a specific page like /paket
-          if (currentPath.includes('/paket') && href === '/paket') {
-             return;
-          }
-
-          if (href === `#${id}` || href === `/#${id}` || (id === 'paket' && href === '/paket')) {
-            link.classList.add('text-gold', 'font-bold');
-            link.classList.remove('text-neutral-200', 'font-medium');
-            if(indicator) indicator.classList.replace('w-0', 'w-full');
-          } else {
-            link.classList.remove('text-gold', 'font-bold');
-            link.classList.add('text-neutral-200', 'font-medium');
-            if(indicator) indicator.classList.replace('w-full', 'w-0');
-          }
-        });
-      }
-    });
-  }, observerOptions);
-
-  sections.forEach(section => {
-    observer.observe(section);
-  });
 </script>
