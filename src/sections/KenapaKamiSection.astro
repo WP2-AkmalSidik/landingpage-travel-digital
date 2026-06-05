@@ -1,73 +1,155 @@
 ---
-import { ShieldCheck, UserCheck, Hotel, Smartphone } from '@lucide/astro';
+import { 
+  ShieldCheck, 
+  UserCheck, 
+  Building, 
+  Bus, 
+  Headset, 
+  HeartHandshake,
+  MessageCircle, 
+  Search, 
+  Wallet, 
+  CreditCard, 
+  BookOpen, 
+  PlaneTakeoff,
+  Award,
+  FileCheck,
+  ShieldAlert,
+  Globe
+} from '@lucide/astro';
 
-const reasons = [
-  {
-    title: 'Amanah & Terpercaya',
-    desc: 'Lebih dari 31 tahun melayani jamaah dengan izin resmi PPIU Kemenag RI.',
-    icon: ShieldCheck,
-    color: 'text-blue-600',
-    bg: 'bg-blue-50'
-  },
-  {
-    title: 'Pembimbing Profesional',
-    desc: 'Didampingi Muthawwif berpengalaman yang membimbing sesuai sunnah.',
-    icon: UserCheck,
-    color: 'text-green-600',
-    bg: 'bg-green-50'
-  },
-  {
-    title: 'Hotel Pilihan',
-    desc: 'Akomodasi berbintang yang berlokasi strategis di dekat pelataran Masjid.',
-    icon: Hotel,
-    color: 'text-gold',
-    bg: 'bg-orange-50'
-  },
-  {
-    title: 'Aplikasi Jamaah',
-    desc: 'Kemudahan akses jadwal, dokumen, dan manasik digital dalam satu genggaman.',
-    icon: Smartphone,
-    color: 'text-purple-600',
-    bg: 'bg-purple-50'
-  }
+const kenapaKami = [
+  { title: 'Berizin Resmi', desc: 'PPIU resmi Kemenag RI, legal dan aman', icon: ShieldCheck },
+  { title: 'Pembimbing Berpengalaman', desc: 'Muthawwif & muthawwifah berpengalaman', icon: UserCheck },
+  { title: 'Hotel Dekat Masjid', desc: 'Akomodasi terbaik dekat dengan Masjid', icon: Building },
+  { title: 'Transportasi Nyaman', desc: 'Bus terbaru, AC, dan full fasilitas', icon: Bus },
+  { title: 'Layanan 24 Jam', desc: 'Tim siap membantu kapan pun Anda butuh', icon: Headset },
+  { title: 'Amanah & Profesional', desc: 'Melayani dengan hati, ibadah lebih berarti', icon: HeartHandshake },
+];
+
+const proses = [
+  { num: '1', title: 'Konsultasi', desc: 'Hubungi kami via WhatsApp untuk konsultasi gratis', icon: MessageCircle },
+  { num: '2', title: 'Pilih Paket', desc: 'Pilih paket sesuai kebutuhan dan tanggal keberangkatan', icon: Search },
+  { num: '3', title: 'Booking', desc: 'Isi data & lakukan pemesanan (booking seat)', icon: Wallet },
+  { num: '4', title: 'Pembayaran', desc: 'Lakukan pembayaran sesuai skema yang dipilih', icon: CreditCard },
+  { num: '5', title: 'Manasik', desc: 'Ikuti manasik digital & pembekalan', icon: BookOpen },
+  { num: '6', title: 'Berangkat', desc: 'Berangkat ibadah dengan tenang & terarah', icon: PlaneTakeoff },
 ];
 ---
 
-<section id="kenapa-kami" class="py-24 bg-white relative">
-  <div class="container mx-auto px-4">
-    <div class="text-center max-w-3xl mx-auto mb-16 animate-fade-in-up">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 text-primary font-bold text-sm mb-4">
-        Nilai Kami
-      </div>
-      <h2 class="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
-        Kenapa Memilih <span class="text-gold">PaKeM Tours?</span>
-      </h2>
-      <p class="text-lg text-slate-600">
-        Kami berkomitmen memberikan pelayanan terbaik, amanah, dan profesional untuk setiap tamu Allah.
-      </p>
+<div id="kenapa-kami" class="pt-12 pb-16 bg-neutral-50 border-t border-neutral-100">
+  
+  <!-- Section 1: Kenapa Harus Pakem Tours? -->
+  <section class="container mx-auto px-4 max-w-7xl mb-12">
+    <div class="text-center mb-10">
+      <h2 class="text-2xl md:text-3xl font-bold text-slate-900 tracking-wider uppercase mb-2">Kenapa Harus Pakem Tours?</h2>
     </div>
-
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 max-w-6xl mx-auto">
-      {reasons.map((item, i) => (
-        <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-8 border border-neutral-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 sm:hover:-translate-y-2 transition-all duration-300 text-center group animate-fade-in-up flex flex-col items-center justify-center" style={`animation-delay: ${i * 100}ms;`}>
-          <div class={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center mb-3 sm:mb-6 ${item.bg} ${item.color} group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
-            <item.icon class="w-6 h-6 sm:w-8 sm:h-8" />
+    
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      {kenapaKami.map((item) => (
+        <div class="bg-white rounded-2xl p-6 text-center border border-neutral-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex flex-col items-center">
+          <div class="w-14 h-14 rounded-full bg-blue-50 text-primary flex items-center justify-center mb-4">
+            <item.icon class="w-7 h-7" />
           </div>
-          <h3 class="text-base sm:text-xl font-bold text-slate-900 mb-2 sm:mb-3 leading-tight">{item.title}</h3>
-          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed hidden sm:block">{item.desc}</p>
+          <h3 class="text-sm font-bold text-slate-900 mb-2 leading-tight">{item.title}</h3>
+          <p class="text-[10px] sm:text-xs text-slate-500 leading-relaxed">{item.desc}</p>
         </div>
       ))}
     </div>
-  </div>
-</section>
+  </section>
 
-<style>
-  .animate-fade-in-up {
-    animation: fadeInUp 0.8s ease-out forwards;
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  @keyframes fadeInUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style>
+  <!-- Section 2: Proses Keberangkatan -->
+  <section class="container mx-auto px-4 max-w-7xl mb-16">
+    <div class="text-center mb-10">
+      <h2 class="text-sm font-bold text-slate-500 tracking-widest uppercase mb-1">Proses Keberangkatan</h2>
+      <h3 class="text-2xl md:text-3xl font-bold text-slate-900">Mudah, Jelas & Transparent</h3>
+    </div>
+    
+    <div class="bg-white rounded-[2rem] p-8 md:p-12 border border-neutral-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative">
+      
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-10 relative z-10">
+        {proses.map((step, i) => (
+          <div class="flex flex-col items-center text-center relative group">
+            <!-- Arrow for desktop -->
+            {i < proses.length - 1 && (
+              <div class="hidden lg:flex absolute top-7 -right-4 w-8 h-8 items-center justify-center text-neutral-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
+            )}
+            
+            <div class="w-14 h-14 sm:w-16 sm:h-16 bg-white border-2 border-slate-800 rounded-full flex items-center justify-center mb-5 text-slate-800 relative">
+              <step.icon class="w-6 h-6 sm:w-7 sm:h-7" stroke-width="1.5" />
+              <div class="absolute -left-1 sm:-left-2 -top-1 sm:-top-2 w-5 h-5 sm:w-6 sm:h-6 bg-slate-100 border-2 border-white rounded-full flex items-center justify-center text-[9px] sm:text-[10px] font-bold text-slate-500">
+                {step.num}
+              </div>
+            </div>
+            <h4 class="text-sm font-bold text-slate-900 mb-2">{step.title}</h4>
+            <p class="text-[10px] sm:text-xs text-slate-500 leading-relaxed px-1 sm:px-2">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Legalitas & Jaminan Resmi -->
+  <section class="container mx-auto px-4 max-w-7xl">
+    <div class="grid lg:grid-cols-3 gap-6">
+      
+      <!-- Text & Icons -->
+      <div class="bg-white rounded-3xl p-8 border border-neutral-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex flex-col justify-center">
+        <h2 class="text-xs font-bold text-slate-500 tracking-widest uppercase mb-2">Legalitas & Jaminan Resmi</h2>
+        <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4">Amanah & Terpercaya</h3>
+        <p class="text-sm text-slate-600 mb-8 leading-relaxed">
+          PAKEM TOURS berkomitmen memberikan pelayanan terbaik dengan legalitas resmi dan transparansi penuh.
+        </p>
+        
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="text-center">
+            <div class="w-10 h-10 mx-auto border border-blue-100 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-2">
+              <FileCheck class="w-5 h-5" />
+            </div>
+            <p class="text-[10px] font-bold text-slate-700 leading-tight">Izin PPIU<br/>No. U491/2021</p>
+          </div>
+          <div class="text-center">
+            <div class="w-10 h-10 mx-auto border border-blue-100 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-2">
+              <Award class="w-5 h-5" />
+            </div>
+            <p class="text-[10px] font-bold text-slate-700 leading-tight">Sertifikat<br/>ISO 9001:2015</p>
+          </div>
+          <div class="text-center">
+            <div class="w-10 h-10 mx-auto border border-blue-100 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-2">
+              <Globe class="w-5 h-5" />
+            </div>
+            <p class="text-[10px] font-bold text-slate-700 leading-tight">Anggota<br/>ASITA</p>
+          </div>
+          <div class="text-center">
+            <div class="w-10 h-10 mx-auto border border-blue-100 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-2">
+              <ShieldAlert class="w-5 h-5" />
+            </div>
+            <p class="text-[10px] font-bold text-slate-700 leading-tight">Berlindung<br/>Asuransi Perjalanan</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certificate Image Placeholder -->
+      <div class="bg-white rounded-3xl overflow-hidden border border-neutral-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex items-center justify-center relative min-h-[300px]">
+         <div class="absolute inset-0 opacity-10 bg-[url('/images/hero-bg.png')] bg-cover bg-center"></div>
+         <div class="z-10 text-center p-6">
+           <FileCheck class="w-16 h-16 text-neutral-300 mx-auto mb-4" />
+           <p class="text-neutral-500 font-medium">Sertifikat Kemenag RI</p>
+         </div>
+      </div>
+      
+      <!-- Team Photo Placeholder -->
+      <div class="bg-slate-200 rounded-3xl overflow-hidden shadow-[0_4px_20px_rgb(0,0,0,0.03)] flex items-center justify-center relative min-h-[300px]">
+         <div class="absolute inset-0 opacity-40 mix-blend-overlay bg-[url('/images/hero-bg.png')] bg-cover bg-center"></div>
+         <div class="z-10 text-center p-6">
+           <UserCheck class="w-16 h-16 text-slate-400 mx-auto mb-4" />
+           <p class="text-slate-600 font-bold">Tim Pakem Tours</p>
+         </div>
+      </div>
+      
+    </div>
+  </section>
+
+</div>

@@ -1,0 +1,72 @@
+---
+import { MessageCircle, Search, Wallet, BookOpen, PlaneTakeoff, ShieldCheck } from '@lucide/astro';
+
+const proses = [
+  {
+    num: '1',
+    title: 'Konsultasi',
+    desc: 'Hubungi kami via WhatsApp untuk konsultasi gratis',
+    icon: MessageCircle
+  },
+  {
+    num: '2',
+    title: 'Pilih Paket',
+    desc: 'Pilih paket sesuai kebutuhan dan tanggal keberangkatan',
+    icon: Search
+  },
+  {
+    num: '3',
+    title: 'Booking',
+    desc: 'Isi data & lakukan pemesanan (booking seat)',
+    icon: Wallet
+  },
+  {
+    num: '4',
+    title: 'Pembayaran',
+    desc: 'Lakukan pembayaran sesuai skema yang dipilih',
+    icon: Wallet // Ideally a credit card icon, but Wallet works
+  },
+  {
+    num: '5',
+    title: 'Manasik',
+    desc: 'Ikuti manasik digital & pembekalan',
+    icon: BookOpen
+  },
+  {
+    num: '6',
+    title: 'Berangkat',
+    desc: 'Berangkat ibadah dengan tenang & terarah',
+    icon: PlaneTakeoff
+  }
+];
+---
+
+<div id="alur" class="py-16 bg-neutral-50">
+  <div class="container mx-auto px-4 max-w-7xl">
+    <div class="text-center mb-10">
+      <h2 class="text-sm font-bold text-slate-500 tracking-widest uppercase mb-1">Proses Keberangkatan</h2>
+      <h3 class="text-2xl md:text-3xl font-bold text-slate-900">Alur Mudah Perjalanan Bersama Pakem Tours</h3>
+    </div>
+    
+    <div class="mt-12">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-10 relative z-10">
+        {proses.map((step, i) => (
+          <div class="flex flex-col items-center text-center relative group">
+            <!-- Arrow for desktop -->
+            {i < proses.length - 1 && (
+              <div class="hidden lg:flex absolute top-7 -right-6 w-12 h-12 items-center justify-center text-neutral-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </div>
+            )}
+            
+            <div class="w-14 h-14 sm:w-16 sm:h-16 bg-white border-[1.5px] border-slate-800 rounded-full flex items-center justify-center mb-5 text-slate-800 relative z-10">
+              <step.icon class="w-6 h-6 sm:w-7 sm:h-7" stroke-width="1.5" />
+            </div>
+            <h4 class="text-sm font-bold text-slate-900 mb-2">{step.title}</h4>
+            <p class="text-[10px] sm:text-xs text-slate-500 leading-relaxed px-1 sm:px-2">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+---
+import { ChevronDown, CheckCircle2 } from '@lucide/astro';
+
+const faqs = [
+  { q: 'Apakah bisa cicilan?' },
+  { q: 'Apakah ada pendamping untuk lansia?' },
+  { q: 'Bagaimana proses visa?' },
+  { q: 'Apakah sudah termasuk tiket pesawat?' },
+  { q: 'Kapan jadwal keberangkatan terdekat?' },
+];
+
+const benefits = [
+  'Konsultasi gratis tanpa komitmen',
+  'Rekomendasi paket sesuai kebutuhan',
+  'Informasi jelas dan transparan'
+];
+---
+
+<section id="faq-cta" class="py-20 bg-neutral-50 border-t border-neutral-100">
+  <div class="container mx-auto px-4 max-w-7xl">
+    <div class="grid lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+      
+      <!-- Left Column: FAQ -->
+      <div class="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 border border-neutral-100 shadow-[0_4px_20px_rgb(0,0,0,0.02)] flex flex-col h-full">
+        <h3 class="text-[11px] sm:text-xs font-bold text-[#0a1930] uppercase tracking-wider mb-6">Pertanyaan Yang Sering Ditanyakan</h3>
+        
+        <div class="space-y-3 mb-8 flex-1">
+          {faqs.map((faq) => (
+            <details class="group bg-white border border-neutral-200 rounded-xl overflow-hidden cursor-pointer">
+              <summary class="flex justify-between items-center font-semibold text-slate-800 p-4 text-xs sm:text-sm list-none">
+                {faq.q}
+                <span class="transition-transform duration-300 group-open:rotate-180 text-slate-400">
+                  <ChevronDown class="w-4 h-4" />
+                </span>
+              </summary>
+              <div class="p-4 pt-0 text-slate-600 text-xs leading-relaxed">
+                Silakan hubungi tim CS kami melalui WhatsApp untuk mendapatkan jawaban detail mengenai pertanyaan ini.
+              </div>
+            </details>
+          ))}
+        </div>
+
+        <a href="#faq" class="block w-full text-center py-3.5 border-2 border-[#0a1930]/10 text-[#0a1930] hover:bg-[#0a1930] hover:text-white font-bold rounded-xl transition-colors duration-300 text-sm">
+          Lihat Semua Pertanyaan
+        </a>
+      </div>
+
+      <!-- Right Column: CTA -->
+      <div class="lg:col-span-7 bg-[#0a1930] rounded-3xl overflow-hidden shadow-2xl relative flex flex-col sm:flex-row h-full min-h-[400px]">
+        
+        <!-- Content -->
+        <div class="w-full sm:w-[65%] p-8 sm:p-10 relative z-20 flex flex-col justify-center">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
+            Masih Bingung Pilih Paket?
+          </h2>
+          
+          <p class="text-neutral-300 text-sm md:text-base leading-relaxed mb-6">
+            Tim Kami Siap Membantu Anda<br/>
+            24 Jam via WhatsApp
+          </p>
+
+          <ul class="space-y-3 mb-8">
+            {benefits.map((item) => (
+              <li class="flex items-center gap-3">
+                <CheckCircle2 class="w-5 h-5 text-white/80 shrink-0" />
+                <span class="text-white text-xs sm:text-sm">{item}</span>
+              </li>
+            ))}
+          </ul>
+          
+          <a 
+            href="https://wa.me/628111111111?text=Halo%20PaKeM%20Tours,%20saya%20masih%20bingung%20pilih%20paket.%20Mohon%20bantuannya." 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="inline-flex justify-center items-center gap-2 bg-[#1da83e] hover:bg-[#199435] border border-[#25D366]/30 text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-300 text-sm w-full sm:w-auto shadow-[0_4px_15px_rgba(37,211,102,0.3)]"
+          >
+            <!-- WhatsApp Icon -->
+            <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
+              <path d="M12.012 2c-5.506 0-9.988 4.482-9.988 9.988 0 1.761.46 3.473 1.332 4.978L2 22l5.233-1.371c1.447.789 3.076 1.205 4.774 1.205 5.505 0 9.988-4.482 9.988-9.988 0-2.659-1.035-5.159-2.92-7.046C17.186 2.922 14.675 2 12.012 2zm5.748 14.282c-.252.712-1.258 1.309-1.748 1.38-.456.065-.957.108-2.937-.71-2.529-1.042-4.159-3.626-4.286-3.795-.125-.168-1.03-1.372-1.03-2.617 0-1.246.65-1.857.882-2.106.232-.249.508-.312.678-.312.169 0 .338 0 .486.007.155.007.363-.059.569.444.207.507.709 1.728.77 1.854.062.126.103.272.02.439-.082.167-.123.272-.247.418-.124.145-.261.325-.373.436-.124.123-.254.258-.11.505.145.247.643 1.058 1.378 1.713.948.844 1.748 1.104 1.996 1.228.247.123.391.103.535-.062.145-.167.618-.718.783-.965.165-.247.33-.207.556-.123.227.084 1.442.679 1.69 1.046.247.367.247.551.121.82z"/>
+            </svg>
+            Konsultasi Sekarang via WhatsApp
+          </a>
+        </div>
+
+        <!-- Image Background (Right Side) -->
+        <div class="absolute right-0 bottom-0 w-full sm:w-[45%] h-[60%] sm:h-[110%] z-10 hidden sm:block">
+          <div class="absolute inset-0 bg-gradient-to-r from-[#0a1930] via-transparent to-transparent z-10"></div>
+          <div class="absolute inset-0 bg-[#0a1930]/40 z-10 mix-blend-multiply"></div>
+          <img src="/images/cta_cs_1780650626499.png" alt="CS Pakem Tours" class="w-full h-full object-cover object-left-top" />
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

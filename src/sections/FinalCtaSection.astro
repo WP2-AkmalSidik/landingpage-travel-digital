@@ -9,55 +9,50 @@ import { ArrowRight } from '@lucide/astro';
   <div class="absolute bottom-1/4 -left-1/4 w-96 h-96 bg-primary-light/30 rounded-full blur-3xl"></div>
   <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLzPjwvc3ZnPg==')] opacity-40"></div>
 
-  <div class="container mx-auto px-4 relative z-10">
-    <div class="max-w-4xl mx-auto bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-10 text-center shadow-lg relative overflow-hidden">
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/10 text-gold font-semibold text-xs mb-5 uppercase tracking-widest relative">
-        Konsultasi Gratis
+  <div class="container mx-auto px-4 max-w-7xl relative z-10">
+    <div class="max-w-6xl mx-auto bg-[#0a1930] rounded-2xl shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center">
+      
+      <!-- Left side image (approx 30% width) -->
+      <div class="w-full md:w-3/12 h-64 md:h-[220px] relative shrink-0">
+        <div class="absolute inset-0 bg-[#0a1930]/40 z-10 mix-blend-multiply"></div>
+        <img src="/images/cta_cs_1780650626499.png" alt="Customer Service" class="w-full h-full object-cover object-top relative z-0" />
       </div>
 
-      <h2 class="text-2xl md:text-4xl font-bold text-white mb-4 tracking-tight leading-tight">
-        Niat Suci Anda, Komitmen <span class="text-gold">Pelayanan Terbaik Kami</span>
-      </h2>
-      
-      <p class="text-sm md:text-base text-neutral-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-        Jangan biarkan keraguan menunda langkah suci Anda menuju Baitullah. Konsultasikan rencana ibadah Umrah atau Haji Khusus Anda secara gratis dengan tim berpengalaman kami.
-      </p>
-      
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+      <!-- Middle side content (approx 50% width) -->
+      <div class="w-full md:w-6/12 p-8 md:py-10 md:px-6 relative z-20 flex flex-col justify-center text-left">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-2 tracking-tight">
+          Siap Berangkat ke Tanah Suci?
+        </h2>
+        
+        <p class="text-sm md:text-sm text-neutral-300 leading-relaxed max-w-lg">
+          Wujudkan impian umrah Anda bersama Pakem Tours.<br class="hidden md:block" />
+          Kami siap melayani dengan hati dan amanah.
+        </p>
+      </div>
+
+      <!-- Right side buttons (approx 20% width) -->
+      <div class="w-full md:w-3/12 p-8 pt-0 md:pt-8 md:pr-8 relative z-20 flex flex-col justify-center gap-3">
         <!-- WhatsApp Call to Action -->
         <a 
           href="https://wa.me/628111111111?text=Halo%20PaKeM%20Tours,%20saya%20ingin%20konsultasi%20mengenai%20paket%20Umrah%20/%20Haji." 
           target="_blank" 
           rel="noopener noreferrer" 
-          class="inline-flex justify-center items-center gap-2.5 bg-[#25D366] hover:bg-[#1ebd54] text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-300 text-sm cursor-pointer whitespace-nowrap"
+          class="flex justify-center items-center gap-2 bg-[#1da83e] hover:bg-[#199435] text-white font-semibold px-4 py-3 rounded-md transition-colors duration-300 text-[13px] w-full"
         >
           <!-- WhatsApp Icon -->
-          <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
+          <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
             <path d="M12.012 2c-5.506 0-9.988 4.482-9.988 9.988 0 1.761.46 3.473 1.332 4.978L2 22l5.233-1.371c1.447.789 3.076 1.205 4.774 1.205 5.505 0 9.988-4.482 9.988-9.988 0-2.659-1.035-5.159-2.92-7.046C17.186 2.922 14.675 2 12.012 2zm5.748 14.282c-.252.712-1.258 1.309-1.748 1.38-.456.065-.957.108-2.937-.71-2.529-1.042-4.159-3.626-4.286-3.795-.125-.168-1.03-1.372-1.03-2.617 0-1.246.65-1.857.882-2.106.232-.249.508-.312.678-.312.169 0 .338 0 .486.007.155.007.363-.059.569.444.207.507.709 1.728.77 1.854.062.126.103.272.02.439-.082.167-.123.272-.247.418-.124.145-.261.325-.373.436-.124.123-.254.258-.11.505.145.247.643 1.058 1.378 1.713.948.844 1.748 1.104 1.996 1.228.247.123.391.103.535-.062.145-.167.618-.718.783-.965.165-.247.33-.207.556-.123.227.084 1.442.679 1.69 1.046.247.367.247.551.121.82z"/>
           </svg>
-          Konsultasi via WhatsApp
+          Konsultasi Gratis
         </a>
         
         <!-- View Packages CTA -->
         <a 
           href="#paket" 
-          class="inline-flex justify-center items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium px-6 py-3 rounded-lg transition-colors duration-300 text-sm cursor-pointer whitespace-nowrap"
+          class="flex justify-center items-center bg-white text-[#0a1930] font-bold px-4 py-3 rounded-md hover:bg-neutral-100 transition-colors duration-300 text-[13px] w-full"
         >
-          Lihat Paket Pilihan <ArrowRight class="w-4 h-4" />
+          Lihat Paket Umroh
         </a>
-      </div>
-      
-      <!-- Key trust highlights -->
-      <div class="mt-10 pt-6 border-t border-white/5 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-neutral-400">
-        <div class="flex items-center justify-center gap-2">
-          <span class="text-gold font-bold">✓</span> Pembimbing Bersertifikat & Sesuai Sunnah
-        </div>
-        <div class="flex items-center justify-center gap-2">
-          <span class="text-gold font-bold">✓</span> Jaminan Izin PPIU Kemenag Resmi
-        </div>
-        <div class="flex items-center justify-center gap-2">
-          <span class="text-gold font-bold">✓</span> Hotel Nyaman & Tiket Terkonfirmasi
-        </div>
       </div>
     </div>
   </div>

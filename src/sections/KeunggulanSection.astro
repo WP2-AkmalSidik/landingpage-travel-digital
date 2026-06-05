@@ -1,0 +1,58 @@
+---
+import { ShieldCheck, HeartHandshake, Clock, MessageSquare, Briefcase, Award } from '@lucide/astro';
+
+const kenapaKami = [
+  {
+    title: 'Berizin Resmi',
+    desc: 'Terdaftar di Kemenag RI dengan izin PPIU & PIHK resmi',
+    icon: ShieldCheck
+  },
+  {
+    title: 'Pembimbing Profesional',
+    desc: 'Didampingi ustaz & muthawwif berpengalaman',
+    icon: Briefcase
+  },
+  {
+    title: 'Akomodasi Terbaik',
+    desc: 'Hotel bintang 4 & 5 dekat dengan Masjidil Haram/Nabawi',
+    icon: Award
+  },
+  {
+    title: 'Layanan 24 Jam',
+    desc: 'Tim kami siap membantu kebutuhan Anda di tanah suci',
+    icon: Clock
+  },
+  {
+    title: 'Fasilitas Digital',
+    desc: 'Aplikasi panduan ibadah lengkap & live tracking',
+    icon: MessageSquare
+  },
+  {
+    title: 'Harga Terjangkau',
+    desc: 'Kualitas premium dengan harga yang rasional',
+    icon: HeartHandshake
+  }
+];
+---
+
+<div id="kenapa-kami" class="pt-12 pb-16 bg-neutral-50">
+  <div class="container mx-auto px-4 max-w-7xl">
+    <div class="text-center mb-10">
+      <h2 class="text-2xl md:text-3xl font-bold text-slate-900 tracking-wider uppercase mb-2">Kenapa Harus Pakem Tours?</h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 mt-12">
+      {kenapaKami.map((item) => (
+        <div class="flex items-start gap-5">
+          <div class="w-14 h-14 shrink-0 rounded-2xl bg-gold/10 text-gold flex items-center justify-center">
+            <item.icon class="w-7 h-7" />
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-900 mb-2 leading-tight">{item.title}</h3>
+            <p class="text-[11px] sm:text-xs text-slate-500 leading-relaxed">{item.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
