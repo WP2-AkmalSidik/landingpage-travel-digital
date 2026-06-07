@@ -2,64 +2,9 @@
 import { ArrowRight, Plane, Building, Calendar, MessageCircle, X } from '@lucide/astro';
 import PackageCard from '../components/PackageCard.astro';
 
-const packages = [
-  {
-    badge: '9 HARI',
-    title: 'Umroh Ekonomis',
-    price: '25.900.000',
-    airline: 'Saudi Airline',
-    hotel: 'Bintang 3',
-    date: '12 Juni 2024',
-    seats: 12,
-    type: 'Umrah',
-    image: '/images/hero-bg.png',
-    mekkahDist: '± 700m',
-    madinahDist: '± 500m',
-    isRecommended: false
-  },
-  {
-    badge: '12 HARI',
-    title: 'Umroh Reguler',
-    price: '29.900.000',
-    airline: 'Saudi Airline',
-    hotel: 'Bintang 4',
-    date: '20 Juli 2024',
-    seats: 7,
-    type: 'Umrah',
-    image: 'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&q=80&w=800',
-    mekkahDist: '± 450m',
-    madinahDist: '± 300m',
-    isRecommended: false
-  },
-  {
-    badge: '12 HARI',
-    title: 'Umroh Plus',
-    price: '33.900.000',
-    airline: 'Saudi Airline',
-    hotel: 'Bintang 4',
-    date: '5 Maret 2024',
-    seats: 10,
-    type: 'Umrah',
-    image: '/images/hero-bg.png',
-    mekkahDist: '± 200m',
-    madinahDist: '± 200m',
-    isRecommended: false
-  },
-  {
-    badge: '14 HARI',
-    title: 'Umroh Premium',
-    price: '39.900.000',
-    airline: 'Saudi Airline',
-    hotel: 'Bintang 5',
-    date: '15 April 2024',
-    seats: 15,
-    type: 'Umrah',
-    image: 'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&q=80&w=800',
-    mekkahDist: '± 150m',
-    madinahDist: '± 150m',
-    isRecommended: true
-  }
-];
+import { fetchPackages } from '../utils/api';
+
+const packages = await fetchPackages(undefined, 4);
 ---
 
 <section id="paket" class="py-24 bg-neutral-50 border-t border-neutral-200">
