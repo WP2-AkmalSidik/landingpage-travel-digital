@@ -47,9 +47,9 @@ export async function fetchPackages(type?: string, limit?: number): Promise<Mapp
     
     if (type) {
       if (type.toLowerCase() === 'umrah' || type.toLowerCase() === 'umroh') {
-        params.append('type', 'Umroh');
+        params.append('type', 'umrah');
       } else if (type.toLowerCase() === 'haji') {
-        params.append('type', 'Haji');
+        params.append('type', 'haji');
       } else {
         params.append('type', type);
       }
@@ -85,8 +85,8 @@ export async function fetchPackages(type?: string, limit?: number): Promise<Mapp
     return rawData.map(pkg => ({
       badge: `${pkg.duration_days} HARI`,
       title: pkg.name,
-      // Convert base_price 25900000 to "25.900.000"
-      price: pkg.base_price.toLocaleString('id-ID'),
+      // Convert base_price 25900000 to "25.900.000", safely handling missing values
+      price: (pkg.base_price || 0).toLocaleString('id-ID'),
       airline: pkg.facilities?.airline || 'Saudi Airline',
       hotel: `Bintang ${pkg.facilities?.hotel_rating || 4}`,
       date: pkg.departure_date_formatted || 'Jadwal Menyusul',
