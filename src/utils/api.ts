@@ -3,6 +3,7 @@ const API_BASE_URL = 'http://127.0.0.1:8000/api';
 export interface ApiPackage {
   id: number;
   name: string;
+  slug: string;
   type: string;
   duration_days: number;
   departure_date_formatted: string;
@@ -20,6 +21,8 @@ export interface ApiPackage {
 }
 
 export interface MappedPackage {
+  id: number;
+  slug: string;
   badge: string;
   title: string;
   price: string;
@@ -42,7 +45,7 @@ export interface MappedPackage {
  */
 export async function fetchPackages(type?: string, limit?: number): Promise<MappedPackage[]> {
   try {
-    let url = `${API_BASE_URL}/packages`;
+    let url = `${API_BASE_URL}/paket`;
     const params = new URLSearchParams();
     
     if (type) {
@@ -83,6 +86,8 @@ export async function fetchPackages(type?: string, limit?: number): Promise<Mapp
     }
 
     return rawData.map(pkg => ({
+      id: pkg.id,
+      slug: pkg.slug || pkg.id.toString(), // fallback if missing
       badge: `${pkg.duration_days} HARI`,
       title: pkg.name,
       // Convert base_price 25900000 to "25.900.000", safely handling missing values

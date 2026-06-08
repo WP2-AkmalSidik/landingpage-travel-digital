@@ -3,6 +3,8 @@ import { MapPin, Plane, Star } from '@lucide/astro';
 
 interface Props {
   pkg: {
+    id?: number;
+    slug?: string;
     badge: string; // e.g., "9 HARI" or "REGULER"
     duration?: string; // fallback if badge is used for something else
     type?: string; 
@@ -27,7 +29,7 @@ const { pkg, delay = 0 } = Astro.props;
 const coverImage = pkg.image || 'https://images.unsplash.com/photo-1565552645632-d725e8bfc19a?auto=format&fit=crop&q=80&w=800';
 ---
 
-<div class="bg-white rounded-[1.5rem] p-3 border border-neutral-200 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-xl transition-all duration-300 flex flex-col group animate-fade-in-up" data-type={pkg.type} style={`animation-delay: ${delay}ms;`}>
+<a href={`/paket/${pkg.slug || pkg.id || '#'}`} class="bg-white rounded-[1.5rem] p-3 border border-neutral-200 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-xl transition-all duration-300 flex flex-col group animate-fade-in-up" data-type={pkg.type} style={`animation-delay: ${delay}ms;`}>
   <!-- Image Header -->
   <div class="h-32 sm:h-40 relative overflow-hidden rounded-xl mb-4">
     <img src={coverImage} alt={pkg.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -87,9 +89,9 @@ const coverImage = pkg.image || 'https://images.unsplash.com/photo-1565552645632
         <div class="text-base sm:text-lg font-black text-[#0a1930] leading-none">Rp {pkg.price}</div>
       </div>
       
-      <button onclick={`openModal('${pkg.title}', '${pkg.price}', '${pkg.airline}', '${pkg.hotel}', '${pkg.date}')`} class={`font-bold py-2 px-4 rounded-xl transition-colors text-[10px] sm:text-xs shrink-0 ${pkg.title.includes('Ekonomis') ? 'bg-transparent border border-[#0a1930] text-[#0a1930] hover:bg-[#0a1930] hover:text-white' : 'bg-[#c39336] text-white hover:bg-[#a87d2b]'}`}>
-        Lihat Detail
-      </button>
+      <div class={`font-bold py-2 px-4 rounded-xl transition-colors text-[10px] sm:text-xs shrink-0 flex items-center justify-center ${pkg.title.includes('Ekonomis') ? 'bg-transparent border border-[#0a1930] text-[#0a1930] group-hover:bg-[#0a1930] group-hover:text-white' : 'bg-[#c39336] text-white group-hover:bg-[#a87d2b]'}`}>
+        Booking
+      </div>
     </div>
   </div>
-</div>
+</a>
