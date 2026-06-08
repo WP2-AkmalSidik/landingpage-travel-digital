@@ -1,0 +1,321 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { fetchPackages } from '../../utils/api';
+import { MapPin, Plane, Calendar, Users, CheckCircle2, ChevronLeft, Building, X, Star, Map } from '@lucide/astro';
+
+// SSG Mode requires getStaticPaths
+export async function getStaticPaths() {
+  const packages = await fetchPackages();
+  return packages.map((pkg) => ({
+    params: { slug: pkg.slug },
+    props: { basicPkg: pkg },
+  }));
+}
+
+const { slug } = Astro.params;
+const { basicPkg } = Astro.props;
+
+// Fetch detailed data for this specific slug
+let detailedData = null;
+try {
+  const res = await fetch(`http://127.0.0.1:8000/api/paket/${slug}`);
+  if (res.ok) {
+    const json = await res.json();
+    detailedData = json.data;
+  }
+} catch (e) {
+  console.error("Error fetching detail", e);
+}
+
+// Data Mapping (with fallbacks to basic package info if detail API fails)
+const pkgId = detailedData?.id || basicPkg.id;
+const pkgTitle = detailedData?.name || basicPkg.title;
+const pkgPriceStr = detailedData?.formatted_price || `Rp ${basicPkg.price}`;
+const coverImage = detailedData?.image_url || basicPkg.image || 'https://images.unsplash.com/photo-1565552645632-d725e8bfc19a?auto=format&fit=crop&q=80&w=1200';
+const pkgDate = detailedData?.nearest_departure_date_formatted || basicPkg.date;
+const pkgSeats = detailedData?.departures?.[0]?.quota || basicPkg.seats || 0;
+const pkgType = detailedData?.type || basicPkg.type;
+const pkgDuration = detailedData?.duration_days ? `${detailedData.duration_days} HARI` : basicPkg.badge;
+const pkgDesc = detailedData?.description || `Detail paket ${pkgTitle} oleh PaKeM Tours.`;
+const shortDesc = detailedData?.short_desc || "";
+
+// Facilities & Hotels
+const airline = detailedData?.airline?.name || basicPkg.airline;
+const hotelMakkah = detailedData?.hotel_makkah;
+const hotelMadinah = detailedData?.hotel_madinah;
+const included = detailedData?.facilities?.included || [];
+const excluded = detailedData?.facilities?.excluded || [];
+const itineraries = detailedData?.itineraries || [];
+const departures = detailedData?.departures || [];
+
+// Render Stars Helper
+const renderStars = (count) => {
+  return Array(count || 4).fill(0).map(() => '★').join('');
+};
+---
+
+<MainLayout title={`${pkgTitle} | PaKeM Tours`} description={pkgDesc}>
+  
+  <!-- Hero Section Detail -->
+  <section class="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden bg-[#0a1930]">
+    <div class="absolute inset-0 z-0">
+      <img src={coverImage} alt={pkgTitle} class="w-full h-full object-cover opacity-30" />
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0a1930] via-[#0a1930]/80 to-transparent"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 max-w-7xl relative z-10">
+      <a href="javascript:history.back()" class="inline-flex items-center gap-2 text-gold hover:text-white transition-colors mb-8 text-sm font-semibold">
+        <ChevronLeft class="w-4 h-4" /> Kembali
+      </a>
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <div>
+          <div class="inline-block px-3 py-1 rounded-full bg-gold/20 border border-gold/50 text-gold text-xs font-bold uppercase tracking-widest mb-4">
+            {pkgType} • {pkgDuration}
+          </div>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight">{pkgTitle}</h1>
+          {shortDesc && <p class="text-neutral-300 text-lg mb-6 max-w-2xl">{shortDesc}</p>}
+          <div class="flex flex-wrap items-center gap-6 text-neutral-300 text-sm">
+            <div class="flex items-center gap-2">
+              <Calendar class="w-4 h-4 text-gold" />
+              <span>Keberangkatan: <strong>{pkgDate}</strong></span>
+            </div>
+            <div class="flex items-center gap-2">
+              <Users class="w-4 h-4 text-gold" />
+              <span>Sisa Kuota: <strong>{pkgSeats} Seat</strong></span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 md:min-w-[300px] text-center md:text-right shadow-2xl">
+          <p class="text-neutral-300 text-sm mb-2">Harga Mulai Dari</p>
+          <p class="text-3xl md:text-4xl font-black text-gold mb-6">{pkgPriceStr}</p>
+          <a href={`/register?paket=${pkgId}`} class="block w-full py-3.5 px-6 bg-gradient-to-r from-gold to-gold-light hover:from-gold-light hover:to-gold text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 text-center">
+            Booking Sekarang
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detail Content -->
+  <section class="py-16 bg-neutral-50 border-t border-neutral-200">
+    <div class="container mx-auto px-4 max-w-7xl">
+      <div class="grid lg:grid-cols-3 gap-12">
+        
+        <!-- Main Info -->
+        <div class="lg:col-span-2 space-y-12">
+          
+          <!-- Deskripsi Paket (Jika ada) -->
+          {detailedData?.description && (
+            <div>
+              <h2 class="text-2xl font-bold text-slate-900 mb-4">Tentang Paket Ini</h2>
+              <div class="prose prose-slate max-w-none text-slate-600 leading-relaxed">
+                <p>{detailedData.description}</p>
+              </div>
+            </div>
+          )}
+
+          <!-- Fasilitas Unggulan -->
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+              <Star class="w-6 h-6 text-gold" /> Fasilitas Unggulan
+            </h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <!-- Maskapai -->
+              <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm flex items-start gap-4">
+                <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                  <Plane class="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 class="font-bold text-slate-900 text-sm">Maskapai</h4>
+                  <p class="text-sm text-slate-500">{airline}</p>
+                </div>
+              </div>
+              
+              <!-- Hotel Makkah -->
+              {hotelMakkah && (
+                <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm flex items-start gap-4">
+                  <div class="w-10 h-10 rounded-full bg-gold/10 text-gold flex items-center justify-center shrink-0">
+                    <Building class="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-slate-900 text-sm">Hotel Makkah</h4>
+                    <p class="text-sm text-slate-500 mb-1">{hotelMakkah.name}</p>
+                    <div class="text-gold text-xs">{renderStars(hotelMakkah.star_rating)}</div>
+                  </div>
+                </div>
+              )}
+
+              <!-- Hotel Madinah -->
+              {hotelMadinah && (
+                <div class="bg-white p-5 rounded-2xl border border-neutral-200 shadow-sm flex items-start gap-4">
+                  <div class="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center shrink-0">
+                    <Building class="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-slate-900 text-sm">Hotel Madinah</h4>
+                    <p class="text-sm text-slate-500 mb-1">{hotelMadinah.name}</p>
+                    <div class="text-gold text-xs">{renderStars(hotelMadinah.star_rating)}</div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <!-- Yang Termasuk & Tidak Termasuk -->
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">Informasi Layanan</h2>
+            <div class="bg-white rounded-2xl border border-neutral-200 shadow-sm overflow-hidden">
+              <div class="p-6 md:p-8 border-b border-neutral-100">
+                <h3 class="font-bold text-green-600 mb-4 flex items-center gap-2">
+                  <CheckCircle2 class="w-5 h-5" /> Termasuk dalam Paket
+                </h3>
+                {included.length > 0 ? (
+                  <ul class="grid sm:grid-cols-2 gap-y-3 gap-x-6 text-sm text-slate-600">
+                    {included.map(item => (
+                      <li class="flex items-start gap-2">
+                        <div class="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0 mt-1.5"></div> 
+                        <span>{item.name}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p class="text-sm text-slate-500 italic">Data belum tersedia.</p>
+                )}
+              </div>
+              <div class="p-6 md:p-8 bg-neutral-50">
+                <h3 class="font-bold text-red-500 mb-4 flex items-center gap-2">
+                  <X class="w-5 h-5" /> Tidak Termasuk
+                </h3>
+                {excluded.length > 0 ? (
+                  <ul class="grid sm:grid-cols-2 gap-y-3 gap-x-6 text-sm text-slate-600">
+                    {excluded.map(item => (
+                      <li class="flex items-start gap-2">
+                        <div class="w-1.5 h-1.5 rounded-full bg-red-400 shrink-0 mt-1.5"></div> 
+                        <span>{item.name}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p class="text-sm text-slate-500 italic">Data belum tersedia.</p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <!-- Jadwal & Harga Keberangkatan -->
+          {departures && departures.length > 0 && (
+            <div>
+              <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+                <Calendar class="w-6 h-6 text-gold" /> Jadwal Keberangkatan & Harga
+              </h2>
+              <div class="space-y-4">
+                {departures.map((dep: any) => (
+                  <div class="bg-white rounded-2xl border border-neutral-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                    <div class="p-5 md:p-6 border-b border-neutral-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50/50">
+                      <div>
+                        <div class="font-bold text-lg text-slate-900 mb-1.5">{dep.departure_date_formatted}</div>
+                        <div class="text-sm text-slate-600 flex items-center gap-2">
+                          <span class={`px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider ${dep.status === 'open' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                            {dep.status}
+                          </span>
+                          <span class="text-neutral-300">•</span>
+                          <span class="font-medium">Sisa Kuota: {dep.quota} Seat</span>
+                        </div>
+                      </div>
+                      <a href={`/register?paket=${pkgId}&jadwal=${dep.id}`} class="shrink-0 text-center px-6 py-2.5 bg-gradient-to-r from-gold to-gold-light hover:from-gold-light hover:to-gold text-white text-sm font-bold rounded-xl transition-all shadow-md hover:-translate-y-0.5">
+                        Pilih Jadwal Ini
+                      </a>
+                    </div>
+                    {dep.prices && dep.prices.length > 0 && (
+                      <div class="p-5 bg-white flex flex-wrap gap-4 divide-x divide-neutral-100">
+                        {dep.prices.map((price: any) => (
+                          <div class="px-4 first:pl-0 flex-1 min-w-[120px]">
+                            <div class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
+                              Kamar {price.room_type}
+                            </div>
+                            <div class="text-base font-black text-slate-800">{price.formatted_price}</div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Itinerary -->
+          {itineraries && itineraries.length > 0 && (
+            <div>
+              <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+                <Map class="w-6 h-6 text-gold" /> Rencana Perjalanan (Itinerary)
+              </h2>
+              <div class="bg-white rounded-2xl border border-neutral-200 shadow-sm p-6 md:p-8">
+                <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-neutral-200 before:to-transparent">
+                  {itineraries.map((itinerary, index) => (
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-gold text-white font-bold shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 text-sm">
+                        {itinerary.day_number}
+                      </div>
+                      
+                      <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-neutral-50 p-5 rounded-xl border border-neutral-100 shadow-sm">
+                        <h4 class="font-bold text-slate-900 mb-2">{itinerary.title}</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">{itinerary.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+          
+        </div>
+        
+        <!-- Sidebar -->
+        <div>
+          <div class="bg-white rounded-2xl border border-neutral-200 shadow-xl p-6 sticky top-28">
+            <h3 class="font-bold text-slate-900 text-lg mb-4">Ringkasan Pemesanan</h3>
+            
+            <div class="flex items-center gap-4 py-4 border-b border-neutral-100">
+              <div class="w-16 h-16 rounded-xl overflow-hidden shrink-0 bg-neutral-100">
+                <img src={coverImage} alt={pkgTitle} class="w-full h-full object-cover" />
+              </div>
+              <div>
+                <div class="font-bold text-slate-900 leading-tight mb-1">{pkgTitle}</div>
+                <div class="text-xs text-slate-500">{pkgDuration}</div>
+              </div>
+            </div>
+            
+            <div class="py-4 space-y-3 border-b border-neutral-100 text-sm">
+              <div class="flex justify-between text-slate-600">
+                <span>Tanggal</span>
+                <span class="font-semibold text-slate-900">{pkgDate}</span>
+              </div>
+              <div class="flex justify-between text-slate-600">
+                <span>Tersedia</span>
+                <span class="font-semibold text-green-600">{pkgSeats} Seat</span>
+              </div>
+            </div>
+            
+            <div class="py-6">
+              <div class="flex justify-between items-end mb-6">
+                <span class="text-slate-500 font-medium">Total Estimasi</span>
+                <span class="text-2xl font-black text-slate-900">{pkgPriceStr}</span>
+              </div>
+              
+              <a href={`/register?paket=${pkgId}`} class="block w-full py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-center transition-colors shadow-lg">
+                Lanjutkan Pendaftaran
+              </a>
+              <a href={`https://wa.me/6281234567890?text=Halo%20PaKeM%20Tours,%20saya%20tertarik%20dengan%20${encodeURIComponent(pkgTitle)}%20dan%20ingin%20tanya%20lebih%20lanjut.`} target="_blank" class="block w-full mt-3 py-3.5 bg-green-50 text-green-600 hover:bg-green-100 font-bold rounded-xl text-center transition-colors border border-green-200">
+                Tanya via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+</MainLayout>
