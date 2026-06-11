@@ -45,7 +45,7 @@ export interface MappedPackage {
  */
 export async function fetchPackages(type?: string, limit?: number): Promise<MappedPackage[]> {
   try {
-    let url = `${API_BASE_URL}/paket`;
+    let url = `${API_BASE_URL}/v1/packages`;
     const params = new URLSearchParams();
     
     if (type) {

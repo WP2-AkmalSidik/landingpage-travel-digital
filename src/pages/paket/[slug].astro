@@ -18,7 +18,7 @@ const { basicPkg } = Astro.props;
 // Fetch detailed data for this specific slug
 let detailedData = null;
 try {
-  const res = await fetch(`http://127.0.0.1:8000/api/paket/${slug}`);
+  const res = await fetch(`http://127.0.0.1:8000/api/v1/packages/${slug}`);
   if (res.ok) {
     const json = await res.json();
     detailedData = json.data;
