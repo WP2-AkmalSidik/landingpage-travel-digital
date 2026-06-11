@@ -1,0 +1,147 @@
+---
+// TabunganFaqSection.astro
+
+const leftFaqs = [
+  {
+    index: 0,
+    q: "Apa itu tabungan?",
+    a: "Program Tabungan Syariah di PaKeM Tours adalah solusi perencanaan keuangan bagi calon jamaah untuk menunaikan ibadah Umrah atau Haji secara terencana. Dana disimpan secara aman di rekening wadiah syariah, tanpa bunga/riba, dan dapat ditarik kembali sewaktu-waktu."
+  },
+  {
+    index: 1,
+    q: "Apa saja syarat membuka tabungan?",
+    a: "Syaratnya sangat mudah dan cepat. Anda hanya perlu menyiapkan Kartu Identitas (KTP) yang aktif, mengisi formulir pendaftaran tabungan secara online maupun offline, serta menyiapkan setoran awal pembukaan rekening minimal Rp 100.000."
+  },
+  {
+    index: 2,
+    q: "Bagaimana cara menambah saldo tabungan?",
+    a: "Penambahan saldo dapat dilakukan kapan saja melalui transfer bank (ATM, Mobile Banking, internet banking) ke nomor Virtual Account (VA) pribadi Anda yang bekerjasama dengan Bank Syariah Nasional. Anda juga dapat mengatur sistem autodebet jika diinginkan."
+  },
+  {
+    index: 3,
+    q: "Jika saldonya lebih dari harga paket, bagaimana?",
+    a: "Kelebihan dana tabungan sepenuhnya merupakan hak jamaah. Ketika saldo tabungan Anda melampaui harga paket yang dipilih pada saat keberangkatan, kelebihan dana tersebut akan ditransfer kembali secara utuh ke rekening pribadi Anda 3-7 hari setelah pelunasan paket."
+  },
+  {
+    index: 4,
+    q: "Bagaimana jika saya mau membatalkan tabungan?",
+    a: "Pembatalan tabungan dapat diajukan kapan saja secara fleksibel. Calon jamaah cukup mengisi formulir pengajuan penarikan dana dan melampirkan berkas identitas diri ke kantor operasional kami atau melalui tim layanan pelanggan online."
+  }
+];
+
+const rightFaqs = [
+  {
+    index: 5,
+    q: "Berapa besar biaya awal pembukaan tabungan?",
+    a: "Tidak ada biaya administrasi pembukaan rekening (Rp 0). Setoran awal minimal yang disetorkan hanyalah Rp 100.000, di mana seluruh uang tersebut secara utuh masuk sebagai saldo tabungan pertama Anda tanpa potongan sepeser pun."
+  },
+  {
+    index: 6,
+    q: "Berapa besar target tabungan agar bisa berangkat?",
+    a: "Target tabungan disesuaikan dengan harga paket Umrah atau Haji yang Anda pilih. Sebagai referensi acuan rata-rata di Indonesia: Umrah mulai dari Rp 24,5 Juta hingga Rp 42,5 Juta, sedangkan Haji Reguler Rp 54,2 Juta dan Haji Khusus mulai dari Rp 162,5 Juta."
+  },
+  {
+    index: 7,
+    q: "Berapa besar setoran perbulan yang harus saya bayarkan?",
+    a: "Kami memberikan kebebasan penuh tanpa beban kontrak atau paksaan denda. Anda dapat menabung mulai dari Rp 500.000 per bulan, atau menyesuaikan besaran setoran dengan kemampuan finansial bulanan Anda secara mandiri."
+  },
+  {
+    index: 8,
+    q: "Apakah dana saya aman?",
+    a: "Sangat aman dan terjamin. Dana tabungan Anda ditempatkan pada rekening penampungan Virtual Account berlisensi atas nama jamaah sendiri di Bank Syariah Nasional mitra resmi Kemenag RI, terpisah sepenuhnya dari rekening operasional travel PaKeM Tours."
+  },
+  {
+    index: 9,
+    q: "Bagaimana proses pengembalian dana saya?",
+    a: "Proses refund atau pengembalian dana setelah pengajuan pembatalan disetujui akan diproses dalam waktu 3 hingga 7 hari kerja. Dana akan ditransfer langsung secara utuh ke rekening bank terdaftar atas nama jamaah yang bersangkutan."
+  }
+];
+---
+
+<section class="bg-off-white px-6 pb-20">
+  <div class="max-w-[600px] mx-auto mb-12 text-center">
+    <div class="text-[10px] font-bold tracking-[0.15em] uppercase text-gold-alt mb-2.5">Pertanyaan Umum</div>
+    <h2 class="text-[clamp(24px,3vw,36px)] font-black text-navy tracking-[-0.02em] leading-1.2 mb-3">Ada yang Ingin Ditanyakan?</h2>
+    <p class="text-sm text-slate-500 leading-1.7">Temukan jawaban untuk keraguan Anda tentang sistem tabungan kami.</p>
+  </div>
+
+  <div class="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+    
+    <!-- LEFT PANEL -->
+    <div class="bg-white rounded-[20px] border border-slate-200 divide-y divide-slate-100 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+      {leftFaqs.map((faq) => (
+        <div class="faq-item" id={`faq-${faq.index}`}>
+          <button 
+            class="w-full px-6 py-5 text-left flex justify-between items-center cursor-pointer gap-3 font-sans faq-btn transition-colors hover:bg-slate-50/80 [&.open]:bg-slate-100 outline-none" 
+            type="button" 
+            aria-expanded="false" 
+            aria-controls={`faq-ans-${faq.index}`}
+          >
+            <span class="text-sm font-semibold text-slate-800 leading-normal faq-q transition-colors duration-200 [.open_&]:text-gold-alt">{faq.q}</span>
+            <svg class="text-slate-400 shrink-0 transition-all duration-250 faq-icon [.open_&]:rotate-180 [.open_&]:text-gold-alt" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="overflow-hidden max-h-0 transition-[max-height] duration-300 ease-out faq-answer" id={`faq-ans-${faq.index}`} role="region" aria-hidden="true">
+            <div class="text-[13.5px] text-slate-500 leading-relaxed px-6 pb-5 pt-1.5 bg-slate-50/50 faq-answer-text">{faq.a}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="bg-white rounded-[20px] border border-slate-200 divide-y divide-slate-100 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+      {rightFaqs.map((faq) => (
+        <div class="faq-item" id={`faq-${faq.index}`}>
+          <button 
+            class="w-full px-6 py-5 text-left flex justify-between items-center cursor-pointer gap-3 font-sans faq-btn transition-colors hover:bg-slate-50/80 [&.open]:bg-slate-100 outline-none" 
+            type="button" 
+            aria-expanded="false" 
+            aria-controls={`faq-ans-${faq.index}`}
+          >
+            <span class="text-sm font-semibold text-slate-800 leading-normal faq-q transition-colors duration-200 [.open_&]:text-gold-alt">{faq.q}</span>
+            <svg class="text-slate-400 shrink-0 transition-all duration-250 faq-icon [.open_&]:rotate-180 [.open_&]:text-gold-alt" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="overflow-hidden max-h-0 transition-[max-height] duration-300 ease-out faq-answer" id={`faq-ans-${faq.index}`} role="region" aria-hidden="true">
+            <div class="text-[13.5px] text-slate-500 leading-relaxed px-6 pb-5 pt-1.5 bg-slate-50/50 faq-answer-text">{faq.a}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // ── FAQ Accordion ─────────────────────────────────────────────────
+  document.querySelectorAll<HTMLButtonElement>('.faq-btn').forEach(btn => {
+    const item   = btn.closest('.faq-item') as HTMLElement;
+    const answer = item.querySelector<HTMLElement>('.faq-answer')!;
+
+    // initialise
+    answer.style.maxHeight = '0';
+
+    btn.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll<HTMLElement>('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        const b = i.querySelector<HTMLButtonElement>('.faq-btn')!;
+        b.classList.remove('open');
+        b.setAttribute('aria-expanded', 'false');
+        const a = i.querySelector<HTMLElement>('.faq-answer')!;
+        a.style.maxHeight = '0';
+        a.setAttribute('aria-hidden', 'true');
+      });
+
+      // Open current
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        answer.setAttribute('aria-hidden', 'false');
+        const inner = answer.querySelector<HTMLElement>('.faq-answer-text')!;
+        answer.style.maxHeight = inner.scrollHeight + 'px';
+      }
+    });
+  });
+</script>

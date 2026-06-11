@@ -1,0 +1,47 @@
+---
+import { ShieldCheck, Wallet, HandHeart, Clock } from '@lucide/astro';
+
+const benefits = [
+  {
+    icon: ShieldCheck,
+    title: "100% Aman & Terjamin",
+    desc: "Dana disimpan di rekening VA khusus jamaah yang bekerjasama dengan Bank Syariah Nasional, bukan di rekening operasional travel.",
+  },
+  {
+    icon: Wallet,
+    title: "Bebas Riba (Wadiah)",
+    desc: "Sistem tabungan wadiah murni tanpa bunga, menjaga keberkahan niat suci ibadah Anda ke Baitullah.",
+  },
+  {
+    icon: HandHeart,
+    title: "Fleksibel Tanpa Beban",
+    desc: "Setoran sesuai kemampuan. Tidak ada denda jika absen setor di bulan tertentu.",
+  },
+  {
+    icon: Clock,
+    title: "Prioritas Keberangkatan",
+    desc: "Jamaah tabungan mendapat prioritas seat begitu dana tabungan mencapai target paket.",
+  },
+];
+---
+
+<section class="bg-off-white px-6 py-20">
+  <div class="max-w-[600px] mx-auto mb-12 text-center">
+    <div class="text-[10px] font-bold tracking-[0.15em] uppercase text-gold-alt mb-2.5">Keunggulan Kami</div>
+    <h2 class="text-[clamp(24px,3vw,36px)] font-black text-navy tracking-[-0.02em] leading-1.2 mb-3">Mengapa Ribuan Keluarga Percayakan Dana Mereka kepada PaKeM?</h2>
+    <p class="text-sm text-slate-500 leading-1.7">Kami tidak hanya travel — kami mitra ibadah Anda.</p>
+  </div>
+
+  <div class="max-w-[1100px] mx-auto grid grid-cols-2 min-[901px]:grid-cols-4 gap-3 sm:gap-4">
+    {benefits.map((b) => (
+      <div class="relative bg-white rounded-2xl sm:rounded-3xl p-4 sm:px-[22px] sm:py-7 border border-black/5 overflow-hidden transition-all duration-250 hover:-translate-y-0.75 hover:shadow-[0_16px_48px_rgba(0,0,0,0.08)] group">
+        <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-gold-alt to-gold-alt-light origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></div>
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-[10px] sm:rounded-[14px] bg-slate-100 flex items-center justify-center mb-3.5 sm:mb-4.5">
+          <b.icon class="w-4.5 h-4.5 sm:w-5.5 sm:h-5.5 text-navy" aria-hidden="true" />
+        </div>
+        <h3 class="text-xs sm:text-sm font-extrabold text-navy mb-1.5 sm:mb-2">{b.title}</h3>
+        <p class="text-[11px] sm:text-xs text-slate-500 leading-relaxed sm:leading-1.7">{b.desc}</p>
+      </div>
+    ))}
+  </div>
+</section>

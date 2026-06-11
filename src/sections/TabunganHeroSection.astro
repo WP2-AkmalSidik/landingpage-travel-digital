@@ -1,0 +1,430 @@
+---
+// TabunganHeroSection.astro
+---
+
+<section class="relative bg-navy min-h-screen flex items-center justify-center px-6 pt-24 pb-12 overflow-hidden">
+  <!-- Background glow blobs -->
+  <div class="absolute -top-[100px] -right-[100px] w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,rgba(200,165,90,0.18)_0%,transparent_65%)] pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute -bottom-[80px] -left-[60px] w-[360px] h-[360px] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.1)_0%,transparent_70%)] pointer-events-none" aria-hidden="true"></div>
+
+  <div class="relative z-10 w-full max-w-[1200px] mx-auto grid grid-cols-1 min-[901px]:grid-cols-2 gap-10 min-[901px]:gap-[56px] items-center">
+
+    <!-- LEFT: Copy -->
+    <div>
+      <div class="inline-flex items-center gap-2 bg-[rgba(200,165,90,0.12)] border border-[rgba(200,165,90,0.3)] text-gold-alt text-[11px] font-bold tracking-[0.12em] uppercase px-4 py-1.5 rounded-full mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold-alt animate-[blink_2s_ease-in-out_infinite]" aria-hidden="true"></span>
+        Program Tabungan Syariah
+      </div>
+
+      <h1 class="text-[clamp(32px,4vw,54px)] font-black leading-[1.12] text-white tracking-[-0.03em] mb-5">
+        Berangkat ke Baitullah<br />
+        Mulai dari <span class="text-gold-alt">Rp&nbsp;500&nbsp;Ribu</span><br />
+        per Bulan
+      </h1>
+
+      <p class="text-[15px] text-white/55 leading-[1.75] max-w-[480px] mb-7">
+        Tidak perlu kaya dulu. Mulai dari niat, rutinkan menabung, dan biarkan sistem kami mengamankan kursi Anda — 100% aman, halal, tanpa riba.
+      </p>
+
+      <div class="flex flex-wrap gap-3 mb-9">
+        <div class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-white/60 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-gold-alt shrink-0" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Dana Dijamin Bank Syariah
+        </div>
+        <div class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-white/60 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-gold-alt shrink-0" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          Bebas Riba (Wadiah)
+        </div>
+        <div class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-white/60 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-gold-alt shrink-0" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Tarik Kapan Saja
+        </div>
+      </div>
+
+      <!-- Social Proof Numbers -->
+      <div class="flex items-center gap-5 flex-wrap">
+        <div>
+          <span class="block text-[22px] font-black text-gold-alt tracking-[-0.02em] leading-none">4.200+</span>
+          <span class="block text-[11px] text-white/45 font-medium mt-0.75 leading-[1.4]">Jamaah Telah Berangkat</span>
+        </div>
+        <div class="w-px h-9 bg-white/10 shrink-0" aria-hidden="true"></div>
+        <div>
+          <span class="block text-[22px] font-black text-gold-alt tracking-[-0.02em] leading-none">12 Thn</span>
+          <span class="block text-[11px] text-white/45 font-medium mt-0.75 leading-[1.4]">Pengalaman Melayani</span>
+        </div>
+        <div class="w-px h-9 bg-white/10 shrink-0" aria-hidden="true"></div>
+        <div>
+          <span class="block text-[22px] font-black text-gold-alt tracking-[-0.02em] leading-none">4.9★</span>
+          <span class="block text-[11px] text-white/45 font-medium mt-0.75 leading-[1.4]">Rating Jamaah</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Calculator Card -->
+    <div class="relative">
+      <div class="bg-white rounded-[32px] p-8 shadow-[0_40px_100px_rgba(0,0,0,0.3),0_0_0_1px_rgba(255,255,255,0.06)] min-h-[460px] flex flex-col justify-between">
+
+        <!-- Card Header -->
+        <div class="flex justify-between items-start mb-7">
+          <div>
+            <h2 id="calc-card-title" class="text-[19px] font-extrabold text-navy tracking-[-0.02em] transition-all duration-200">Kalkulator Tabungan</h2>
+            <p id="calc-card-sub" class="text-xs text-slate-400 mt-0.75 transition-all duration-200">Hitung estimasi keberangkatan Anda</p>
+          </div>
+          <div class="w-11 h-11 rounded-[14px] bg-navy flex items-center justify-center text-gold-alt shrink-0" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+          </div>
+        </div>
+
+        <!-- INPUT FORM WRAPPER -->
+        <div id="calc-inputs-wrap" class="space-y-5 flex-1 flex flex-col justify-between">
+          <div class="space-y-5">
+            <!-- Pilihan Paket Acuan -->
+            <div>
+              <label class="flex justify-between items-center text-[10px] font-bold text-slate-400 uppercase tracking-[0.1em] mb-2" for="paket_select">Pilih Estimasi Paket</label>
+              <select
+                id="paket_select"
+                class="w-full border-[1.5px] border-slate-200 rounded-[10px] px-3.5 py-2.75 text-sm font-semibold text-navy bg-white outline-none focus:border-navy transition-colors font-sans cursor-pointer"
+              >
+                <option value="" disabled selected>-- Pilih Paket Rata-Rata Indonesia --</option>
+                <option value="umrah_ekonomis" data-nama="Umrah Ekonomis (9 Hari)" data-harga="24500000">Umrah Ekonomis (9 Hari) - Rp 24,5 Jt</option>
+                <option value="umrah_reguler" data-nama="Umrah Reguler (9 Hari)" data-harga="32500000">Umrah Reguler (9 Hari) - Rp 32,5 Jt</option>
+                <option value="umrah_vip" data-nama="Umrah Executive/VIP (12 Hari)" data-harga="42500000">Umrah Executive/VIP (12 Hari) - Rp 42,5 Jt</option>
+                <option value="haji_reguler" data-nama="Haji Reguler Pemerintah" data-harga="54190000">Haji Reguler Pemerintah - Rp 54,2 Jt</option>
+                <option value="haji_khusus" data-nama="Haji Khusus / Plus" data-harga="162500000">Haji Khusus / Plus - Rp 162,5 Jt</option>
+                <option value="haji_furoda" data-nama="Haji Furoda / Mujamalah" data-harga="325000000">Haji Furoda / Mujamalah - Rp 325,0 Jt</option>
+                <option value="kustom" data-nama="Paket Kustom" data-harga="">Input Kustom / Manual</option>
+              </select>
+            </div>
+
+            <!-- Harga Paket (manual input, conditionally shown) -->
+            <div id="harga_paket_container" class="hidden transition-all duration-300">
+              <label class="flex justify-between items-center text-[10px] font-bold text-slate-400 uppercase tracking-[0.1em] mb-2" for="harga_paket">Harga Paket (Rp)</label>
+              <div class="relative">
+                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-400 pointer-events-none">Rp</span>
+                <input
+                  type="text"
+                  id="harga_paket"
+                  class="w-full border-[1.5px] border-slate-200 rounded-[10px] pl-9 pr-3.5 py-2.75 text-sm font-semibold text-navy bg-white outline-none focus:border-navy transition-colors placeholder:text-slate-400 placeholder:font-normal font-sans"
+                  placeholder="28.500.000"
+                  inputmode="numeric"
+                />
+              </div>
+              <p class="text-[11px] text-slate-400 mt-1.5">Masukkan estimasi harga dalam Rupiah.</p>
+            </div>
+
+            <div class="grid grid-cols-1 min-[481px]:grid-cols-2 gap-4">
+              <!-- Jumlah Jamaah -->
+              <div>
+                <label class="flex justify-between items-center text-[10px] font-bold text-slate-400 uppercase tracking-[0.1em] mb-2" for="jumlah_jamaah">Jumlah Jamaah</label>
+                <div class="flex gap-1.5 flex-wrap" id="jamaah-btns" role="group" aria-label="Pilih jumlah jamaah">
+                  {[1,2,3,4,5,6].map(n => (
+                    <button
+                      class={`jamaah-btn w-9 h-9 rounded-[9px] border-[1.5px] border-slate-200 bg-white text-[13px] font-bold text-slate-500 cursor-pointer transition-all duration-150 flex items-center justify-center font-sans hover:border-navy hover:text-navy hover:bg-slate-50 [&.active]:bg-navy [&.active]:border-navy [&.active]:text-white ${n === 1 ? 'active' : ''}`}
+                      data-val={n}
+                      type="button"
+                      aria-pressed={n === 1 ? 'true' : 'false'}
+                    >
+                      {n}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Setoran per Bulan -->
+              <div>
+                <label class="flex justify-between items-center text-[10px] font-bold text-slate-400 uppercase tracking-[0.1em] mb-2" for="setoran_range">
+                  Setoran / Bulan
+                  <span id="setoran-display" class="text-[13px] font-extrabold text-navy normal-case tracking-normal">Rp 1.000.000</span>
+                </label>
+                <input
+                  type="range"
+                  id="setoran_range"
+                  min="500000"
+                  max="10000000"
+                  step="100000"
+                  value="1000000"
+                  class="w-full h-1 rounded-full outline-none cursor-pointer appearance-none transition-[background] duration-100 bg-slate-200"
+                  aria-label="Setoran per bulan"
+                />
+                <div class="flex justify-between text-[10px] text-slate-400 font-semibold mt-1.5">
+                  <span>Rp 500 Rb</span>
+                  <span>Rp 10 Jt</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hitung Button -->
+          <button type="button" id="btn-hitung" class="w-full flex items-center justify-center gap-2 px-5 py-[15px] mt-6 bg-gradient-to-br from-gold-alt via-gold-alt-light to-gold-alt rounded-2xl text-sm font-extrabold text-navy tracking-[0.01em] cursor-pointer shadow-[0_6px_24px_rgba(200,165,90,0.4)] transition-all duration-200 font-sans hover:-translate-y-px hover:shadow-[0_10px_32px_rgba(200,165,90,0.5)] active:scale-98">
+            Hitung Estimasi Keberangkatan
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <!-- ESTIMATION RESULT WRAPPER (Hidden by default) -->
+        <div id="calc-results-wrap" class="hidden space-y-6 flex-1 flex flex-col justify-between" aria-live="polite">
+          <div class="rounded-2xl border-[1.5px] border-slate-200 overflow-hidden">
+            <div class="bg-navy px-5 py-4.5 flex justify-between items-start">
+              <div>
+                <div class="text-[10px] text-white/45 font-semibold uppercase tracking-[0.1em] mb-1">Estimasi Keberangkatan</div>
+                <div class="text-22 font-black text-gold-alt tracking-[-0.02em]" id="res-tahun">—</div>
+              </div>
+              <div class="text-right">
+                <div class="text-[10px] text-white/45 font-semibold uppercase tracking-[0.1em] mb-1">Total Cicilan</div>
+                <div class="text-base font-extrabold text-white/75" id="res-cicilan">—</div>
+              </div>
+            </div>
+            <div class="bg-slate-50 px-5 py-4.5 grid grid-cols-2 gap-3.5">
+              <div>
+                <div class="text-[10px] text-slate-400 font-semibold uppercase tracking-[0.08em] mb-0.75">Estimasi Paket</div>
+                <div class="text-sm font-extrabold text-navy leading-tight" id="res-paket">—</div>
+              </div>
+              <div>
+                <div class="text-[10px] text-slate-400 font-semibold uppercase tracking-[0.08em] mb-0.75">Jumlah Jamaah</div>
+                <div class="text-sm font-extrabold text-navy" id="res-jamaah">—</div>
+              </div>
+              <div>
+                <div class="text-[10px] text-slate-400 font-semibold uppercase tracking-[0.08em] mb-0.75">Harga per Orang</div>
+                <div class="text-sm font-extrabold text-navy" id="res-harga-per-org">—</div>
+              </div>
+              <div>
+                <div class="text-[10px] text-slate-400 font-semibold uppercase tracking-[0.08em] mb-0.75">Total Kebutuhan</div>
+                <div class="text-sm font-extrabold text-navy" id="res-total">—</div>
+              </div>
+              <div>
+                <div class="text-[10px] text-slate-400 font-semibold uppercase tracking-[0.08em] mb-0.75">Setoran / Bulan</div>
+                <div class="text-sm font-extrabold text-navy" id="res-setoran">—</div>
+              </div>
+              <div>
+                <div class="text-[10px] text-slate-400 font-semibold uppercase tracking-[0.08em] mb-0.75">Lama Menabung</div>
+                <div class="text-sm font-extrabold text-navy" id="res-durasi">—</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="space-y-3">
+            <a href="/register" class="w-full flex items-center justify-center gap-2 px-5 py-3.5 bg-gradient-to-br from-[#10b981] to-[#059669] hover:from-[#34d399] hover:to-[#059669] text-white font-extrabold rounded-2xl text-sm shadow-[0_4px_14px_rgba(16,185,129,0.3)] transition-all duration-200 text-center">
+              Buka Rekening Sekarang →
+            </a>
+            <button type="button" id="btn-refresh" class="w-full flex items-center justify-center gap-2 px-5 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-2xl text-sm transition-colors duration-200 cursor-pointer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+              Ulangi / Simulasi Lain
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @keyframes blink { 
+    0%, 100% { opacity: 1; } 
+    50% { opacity: 0.35; } 
+  }
+
+  /* Range Slider Cross-Browser Thumb Styling using Tailwind v4 resolved variables */
+  #setoran_range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-navy);
+    cursor: pointer;
+    border: 3px solid var(--color-white, #ffffff);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  #setoran_range::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-navy);
+    cursor: pointer;
+    border: 3px solid var(--color-white, #ffffff);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+</style>
+
+<script>
+  // ── Utility ──────────────────────────────────────────────────────
+  function formatRpInput(val: string): string {
+    const digits = val.replace(/\D/g, '');
+    return digits.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+
+  // Parses Rp 24.500.000 back to 24500000
+  function parseRpInput(val: string): number {
+    return parseInt(val.replace(/\./g, '') || '0', 10);
+  }
+
+  function formatRpFull(num: number): string {
+    return 'Rp ' + num.toLocaleString('id-ID');
+  }
+
+  function formatRpShort(num: number): string {
+    if (num >= 1_000_000_000) return 'Rp ' + (num / 1_000_000_000).toFixed(1) + ' M';
+    if (num >= 1_000_000)     return 'Rp ' + (num / 1_000_000).toFixed(1).replace('.0','') + ' Jt';
+    if (num >= 1_000)         return 'Rp ' + Math.round(num / 1_000) + ' Rb';
+    return 'Rp ' + num;
+  }
+
+  // ── State ─────────────────────────────────────────────────────────
+  let selectedJamaah = 1;
+  let setoranValue    = 1_000_000;
+
+  // ── Harga input masking ───────────────────────────────────────────
+  const hargaInput = document.getElementById('harga_paket') as HTMLInputElement;
+  hargaInput?.addEventListener('input', () => {
+    const raw = hargaInput.value;
+    const digits = raw.replace(/\D/g, '');
+    const formatted = digits.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    hargaInput.value = formatted;
+  });
+
+  // ── Dropdown package selection show/hide manual ────────────────────
+  const paketSelect = document.getElementById('paket_select') as HTMLSelectElement;
+  paketSelect?.addEventListener('change', () => {
+    const val = paketSelect.value;
+    const hargaContainer = document.getElementById('harga_paket_container');
+
+    if (val === 'kustom') {
+      hargaContainer?.classList.remove('hidden');
+      if (hargaInput) {
+        hargaInput.value = '';
+        hargaInput.focus();
+      }
+    } else {
+      hargaContainer?.classList.add('hidden');
+    }
+  });
+
+  // ── Jamaah selector ───────────────────────────────────────────────
+  const jamaahContainer = document.getElementById('jamaah-btns');
+  jamaahContainer?.querySelectorAll<HTMLButtonElement>('.jamaah-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      jamaahContainer.querySelectorAll('.jamaah-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+      selectedJamaah = parseInt(btn.dataset.val ?? '1', 10);
+    });
+  });
+
+  // ── Range slider ──────────────────────────────────────────────────
+  const rangeSlider   = document.getElementById('setoran_range') as HTMLInputElement;
+  const setoranDisplay = document.getElementById('setoran-display') as HTMLElement;
+
+  function updateRangeTrack() {
+    const min = parseInt(rangeSlider.min);
+    const max = parseInt(rangeSlider.max);
+    const pct = ((setoranValue - min) / (max - min)) * 100;
+    rangeSlider.style.background =
+      `linear-gradient(to right, var(--color-navy) ${pct}%, var(--color-slate-200) ${pct}%)`;
+    setoranDisplay.textContent = formatRpShort(setoranValue);
+  }
+
+  rangeSlider?.addEventListener('input', () => {
+    setoranValue = parseInt(rangeSlider.value, 10);
+    updateRangeTrack();
+  });
+
+  updateRangeTrack();
+
+  // ── Calculator logic ──────────────────────────────────────────────
+  const btnHitung   = document.getElementById('btn-hitung') as HTMLButtonElement;
+  const btnRefresh  = document.getElementById('btn-refresh') as HTMLButtonElement;
+  const resultPanel = document.getElementById('calc-results-wrap') as HTMLElement;
+  const inputsPanel = document.getElementById('calc-inputs-wrap') as HTMLElement;
+  const cardTitle   = document.getElementById('calc-card-title') as HTMLElement;
+  const cardSub     = document.getElementById('calc-card-sub') as HTMLElement;
+
+  btnHitung?.addEventListener('click', () => {
+    const selectedOption = paketSelect.options[paketSelect.selectedIndex];
+    const val = paketSelect.value;
+
+    if (!val) {
+      alert('Mohon pilih estimasi paket terlebih dahulu.');
+      paketSelect.focus();
+      return;
+    }
+
+    let namaPaket = selectedOption.getAttribute('data-nama') || '';
+    let hargaPerOrg = 0;
+
+    if (val === 'kustom') {
+      const hargaStr = hargaInput?.value ?? '';
+      hargaPerOrg = parseRpInput(hargaStr);
+      namaPaket = 'Paket Kustom';
+
+      if (!hargaPerOrg || hargaPerOrg < 1_000_000) {
+        alert('Mohon masukkan harga paket kustom yang valid (min. Rp 1.000.000).');
+        hargaInput?.focus();
+        return;
+      }
+    } else {
+      const hargaRaw = selectedOption.getAttribute('data-harga') || '0';
+      hargaPerOrg = parseInt(hargaRaw, 10);
+    }
+
+    if (setoranValue < 500_000) {
+      alert('Minimal setoran Rp 500.000 per bulan.');
+      return;
+    }
+
+    // Calculations
+    const totalBiaya    = hargaPerOrg * selectedJamaah;
+    const durasiBulan   = Math.ceil(totalBiaya / setoranValue);
+
+    // Departure month
+    const now       = new Date();
+    const future    = new Date(now.getFullYear(), now.getMonth() + durasiBulan, 1);
+    const bulanNames = [
+      'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 
+      'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+    ];
+    const depStr    = bulanNames[future.getMonth()] + ' ' + future.getFullYear();
+
+    // Duration label
+    const tahun    = Math.floor(durasiBulan / 12);
+    const sisaBulan = durasiBulan % 12;
+    let durStr = '';
+    if (tahun > 0)     durStr += `${tahun} Tahun `;
+    if (sisaBulan > 0) durStr += `${sisaBulan} Bulan`;
+    if (!durStr)       durStr = '1 Bulan';
+
+    // Update UI
+    (document.getElementById('res-tahun')   as HTMLElement).textContent = depStr;
+    (document.getElementById('res-cicilan') as HTMLElement).textContent = `${durasiBulan}× cicilan`;
+    (document.getElementById('res-paket')   as HTMLElement).textContent = namaPaket || '—';
+    (document.getElementById('res-jamaah')  as HTMLElement).textContent = `${selectedJamaah} Orang`;
+    (document.getElementById('res-harga-per-org') as HTMLElement).textContent = formatRpFull(hargaPerOrg);
+    (document.getElementById('res-total')   as HTMLElement).textContent = formatRpFull(totalBiaya);
+    (document.getElementById('res-setoran') as HTMLElement).textContent = formatRpFull(setoranValue) + '/bln';
+    (document.getElementById('res-durasi')  as HTMLElement).textContent = durStr.trim();
+
+    // Toggle panels inside card
+    inputsPanel.classList.add('hidden');
+    resultPanel.classList.remove('hidden');
+
+    // Update Card Header Subtitle/Title
+    if (cardTitle) cardTitle.textContent = 'Estimasi Keberangkatan';
+    if (cardSub)   cardSub.textContent = 'Hasil simulasi perencanaan tabungan Anda';
+  });
+
+  // ── Refresh / Reset logic ─────────────────────────────────────────
+  btnRefresh?.addEventListener('click', () => {
+    // Show input fields, hide results
+    inputsPanel.classList.remove('hidden');
+    resultPanel.classList.add('hidden');
+
+    // Restore Card Header text
+    if (cardTitle) cardTitle.textContent = 'Kalkulator Tabungan';
+    if (cardSub)   cardSub.textContent = 'Hitung estimasi keberangkatan Anda';
+  });
+</script>

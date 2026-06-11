@@ -12,6 +12,12 @@
   --color-gold-light: #d19a41;
   --color-accent: #CD3125;
   
+  --color-navy: #0c1f3d;
+  --color-navy-light: #0f2a50;
+  --color-gold-alt: #c8a55a;
+  --color-gold-alt-light: #e6c87a;
+  --color-off-white: #f4f0eb;
+  
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
