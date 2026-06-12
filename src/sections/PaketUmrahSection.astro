@@ -4,7 +4,9 @@ import PackageCard from '../components/PackageCard.astro';
 
 import { fetchPackages } from '../utils/api';
 
-const packages = await fetchPackages(undefined, 4);
+const umrahPackages = await fetchPackages('umrah', 2);
+const hajiPackages = await fetchPackages('haji', 2);
+const packages = [...umrahPackages, ...hajiPackages];
 ---
 
 <section id="paket" class="py-24 bg-neutral-50 border-t border-neutral-200">

@@ -1,6 +1,11 @@
 ---
 import { Globe, Menu, X, MessageCircle } from '@lucide/astro';
 
+interface Props {
+  pkgType?: string;
+}
+
+const { pkgType } = Astro.props;
 const currentPath = Astro.url.pathname;
 
 const navLinks = [
@@ -29,6 +34,14 @@ const navLinks = [
             let isActive = false;
             if (currentPath === '/') {
               isActive = link.name === 'Beranda';
+            } else if (currentPath.startsWith('/paket/')) {
+              if (pkgType) {
+                if ((pkgType.toLowerCase() === 'umroh' || pkgType.toLowerCase() === 'umrah') && link.href === '/paket-umroh') {
+                  isActive = true;
+                } else if (pkgType.toLowerCase() === 'haji' && link.href === '/paket-haji') {
+                  isActive = true;
+                }
+              }
             } else {
               // Ignore hash links on other pages, only match actual paths like /paket
               isActive = !link.href.startsWith('/#') && currentPath.startsWith(link.href);

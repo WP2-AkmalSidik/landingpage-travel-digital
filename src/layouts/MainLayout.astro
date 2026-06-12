@@ -7,11 +7,13 @@ import { Globe, MapPin, Phone, Mail, Clock, MessageCircle, FileText } from '@luc
 interface Props {
 	title?: string;
 	description?: string;
+	pkgType?: string;
 }
 
 const { 
   title = "PaKeM Tours - Ibadah Nyaman, Perjalanan Bermakna", 
-  description = "Biro perjalanan Haji Khusus dan Umrah resmi terpercaya. Lebih dari 31 tahun berkhidmat mendampingi jamaah ke tanah suci dengan pelayanan amanah dan profesional." 
+  description = "Biro perjalanan Haji Khusus dan Umrah resmi terpercaya. Lebih dari 31 tahun berkhidmat mendampingi jamaah ke tanah suci dengan pelayanan amanah dan profesional.",
+  pkgType
 } = Astro.props;
 ---
 
@@ -60,7 +62,7 @@ const {
 			</a>
 		</div>
 		
-		<Navbar />
+		<Navbar pkgType={pkgType} />
 		
 		<main id="main-content" class="flex-grow">
 			<slot />
